@@ -8,6 +8,38 @@
   <img src="docs/assets/banner.png" alt="Serpantinum" width="850" />
 </div>
 
+## Minecraft edition (this fork)
+
+This fork adds an optional **Minecraft interface style** to Serpantinum. Pick it in
+**Settings → Theme → Interface style** (Default / Minecraft); it switches at runtime and
+the Default style stays exactly like upstream.
+
+<div align="center">
+  <img src="docs/minecraft/preview.gif" alt="Minecraft edition preview" width="800" />
+  <br />
+  <a href="docs/minecraft/demo.mp4">▶ Full demo video (1 min)</a>
+</div>
+
+- stone panels and the Monocraft pixel font across the bar, popups and settings
+- Steve hopping between workspace islands, visiting popups and talking (in all bundled languages)
+- Minecraft lock screen with hearts for wrong passwords and a "You died!" screen
+- compact launcher, quick actions (draw, system usage with block fills, timer with an XP bar, notes as book pages)
+- live wallpaper: real-time day/night sky, drifting hills, mobs and Steve (pick `minecraft-live.png`)
+
+| | |
+|---|---|
+| ![Desktop](docs/minecraft/01-desktop.png) | ![Calendar](docs/minecraft/02-calendar.png) |
+| ![Music](docs/minecraft/03-music.png) | ![Network](docs/minecraft/04-network.png) |
+| ![Volume](docs/minecraft/05-volume.png) | ![System](docs/minecraft/06-system.png) |
+| ![Interface style setting](docs/minecraft/07-settings-style.png) | ![Launcher](docs/minecraft/08-launcher.png) |
+| ![Quick actions: draw](docs/minecraft/09-quick-draw.png) | ![Quick actions: system usage](docs/minecraft/10-quick-system-usage.png) |
+| ![Quick actions: timer](docs/minecraft/11-quick-timer.png) | ![Quick actions: notes](docs/minecraft/12-quick-notes.png) |
+| ![Lock screen](docs/minecraft/13-lock.png) | ![Lock screen, wrong password](docs/minecraft/14-lock-wrong-password.png) |
+
+Serpantinum is made by [ilyamiro](https://github.com/ilyamiro/serpantinum); the original README follows.
+
+---
+
 ## Previews
 
 | | |
