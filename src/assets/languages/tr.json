@@ -1546,5 +1546,97 @@
   },
   "datetime": {
     "full_date": "dddd, MMMM dd"
+  },
+  "minecraft": {
+    "steve": {
+      "hi": "Selam!",
+      "hi_name": "Selam, {name}!",
+      "friend": "dostum",
+      "ouch": "Ah!",
+      "dont_touch": "Dokunma!",
+      "want_diamonds": "Elmas istiyorum",
+      "where_pickaxe": "Kazmam nerede?",
+      "lets_craft": "Craft yapalım mı?",
+      "creeper_behind": "Arkanda creeper var!",
+      "hmm": "Hımm...",
+      "hey": "Hey!",
+      "ow": "Of!",
+      "careful": "Dikkat!",
+      "again": "Bir daha!",
+      "wheee": "Vuhuu!",
+      "hooray": "Yaşasın!",
+      "let_go": "Bırak!",
+      "five_more_minutes": "Mmm... 5 dakika daha",
+      "flip": "Ters takla!",
+      "nice_weather": "Hava güzel",
+      "settings_hi": "Ayarlayalım mı?",
+      "like_theme": "Bu temayı sevdim",
+      "click_tabs": "Sekmelere tıkla!",
+      "diamond_button": "«Elmas» düğmesi nerede?",
+      "battery_home": "Batarya benim evim",
+      "dont_turn_off": "Beni kapatma!",
+      "what_now": "Ne yapıyoruz?",
+      "charging": "Şarj oluyorum ⚡",
+      "hungry": "Acıktım... {percent}%",
+      "music": "Müzik!",
+      "louder": "Daha yüksek!",
+      "boom": "Bum-bum-bum",
+      "love_track": "Bu şarkıya bayılıyorum",
+      "slime_bounce": "Balçık zıplıyor!",
+      "quiet_here": "Burası sessiz...",
+      "loud": "ÇOK YÜKSEK!!",
+      "shh": "şşş...",
+      "good_night": "İyi geceler...",
+      "woke_up": "Uyandım!",
+      "come_back": "Çabuk dön!",
+      "guarding": "Bu bilgisayarı koruyorum",
+      "remember_password": "Şifreni hatırlıyor musun?",
+      "bored": "Sıkıldım...",
+      "will_guard": "Ben nöbet tutarım, {name}!",
+      "welcome_back": "Tekrar hoş geldin!",
+      "wrong_pw": "Of! Yanlış şifre",
+      "it_hurts": "Acıyor!",
+      "try_again": "Tekrar dene"
+    },
+    "mob": {
+      "sheep": "Mee!|Meeee|Mee?",
+      "pig": "Hırr!|Hırr-hırr|Hırk?",
+      "cow": "Möö!|Mööö|Mö?",
+      "chicken": "Gıt!|Gıdak!|Cik",
+      "creeper": "Tssss...|...|Sssss"
+    },
+    "lock": {
+      "player": "oyuncu",
+      "splashes": "Selam, {name}!|Oyun duraklatıldı!|Creeperlar geçemez!|Steve nöbette!|Şifreni unutma!|%100 Arch!|Artık Hyprland ile!|Bloklardan yapıldı!|AFK!|Elmas kazmaya gittim!|Ctrl+Alt+Del işe yaramaz!|Serpantinum'u da dene!",
+      "paused": "Oyun duraklatıldı",
+      "password_of": "{name} oyuncusunun şifresi",
+      "start_typing": "yazmaya başla...",
+      "loading_world": "Dünya yükleniyor...",
+      "checking": "Şifre kontrol ediliyor...",
+      "wrong": "Yanlış şifre!",
+      "hint": "Enter — devam, Esc — gizle",
+      "press_any": "Bir tuşa bas",
+      "charging": "Şarj oluyor",
+      "battery": "Batarya",
+      "sleep": "Uyku",
+      "reboot": "Yeniden başlat",
+      "power_off": "Kapat",
+      "you_died": "Öldün!",
+      "death_reason": "Sebep: çok fazla yanlış şifre",
+      "respawn": "Yeniden doğ"
+    },
+    "inventory": {
+      "title": "Envanter",
+      "search_title": "Eşya ara",
+      "hotbar": "Hızlı erişim",
+      "hint": "Enter — başlat · 1-9 — hızlı erişim · Esc — kapat"
+    },
+    "common": {
+      "search": "Ara...",
+      "nothing_found": "Hiçbir şey bulunamadı"
+    },
+    "launcher": {
+      "apps": "Uygulamalar"
+    }
   }
 }

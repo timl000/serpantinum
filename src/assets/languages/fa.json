@@ -1546,5 +1546,97 @@
   },
   "datetime": {
     "full_date": "dddd، dd MMMM"
+  },
+  "minecraft": {
+    "steve": {
+      "hi": "سلام!",
+      "hi_name": "سلام {name}!",
+      "friend": "دوست من",
+      "ouch": "آخ!",
+      "dont_touch": "دست نزن!",
+      "want_diamonds": "الماس می‌خوام",
+      "where_pickaxe": "کلنگم کجاست؟",
+      "lets_craft": "کرافت کنیم؟",
+      "creeper_behind": "کریپر پشتته!",
+      "hmm": "هممم...",
+      "hey": "هی!",
+      "ow": "آی!",
+      "careful": "مواظب باش!",
+      "again": "دوباره!",
+      "wheee": "ووهو!",
+      "hooray": "هورا!",
+      "let_go": "ولم کن!",
+      "five_more_minutes": "ممم... پنج دقیقه دیگه",
+      "flip": "پشتک!",
+      "nice_weather": "هوا خوبه",
+      "settings_hi": "تنظیم کنیم؟",
+      "like_theme": "این تم رو دوست دارم",
+      "click_tabs": "روی تب‌ها بزن!",
+      "diamond_button": "دکمه «الماس» کجاست؟",
+      "battery_home": "باتری خونه‌ی منه",
+      "dont_turn_off": "خاموشم نکن!",
+      "what_now": "چی کار کنیم؟",
+      "charging": "دارم شارژ می‌شم ⚡",
+      "hungry": "گرسنمه... {percent}%",
+      "music": "موزیک!",
+      "louder": "بلندتر!",
+      "boom": "بوم-بوم-بوم",
+      "love_track": "عاشق این آهنگم",
+      "slime_bounce": "اسلایم فنری‌یه!",
+      "quiet_here": "اینجا ساکته...",
+      "loud": "بلنده!!",
+      "shh": "هیس...",
+      "good_night": "شب بخیر...",
+      "woke_up": "بیدار شدم!",
+      "come_back": "زود برگرد!",
+      "guarding": "دارم از این کامپیوتر نگهبانی می‌کنم",
+      "remember_password": "رمز رو یادته؟",
+      "bored": "حوصله‌م سر رفت...",
+      "will_guard": "من نگهبانی می‌دم، {name}!",
+      "welcome_back": "خوش برگشتی!",
+      "wrong_pw": "آخ! رمز اشتباهه",
+      "it_hurts": "درد داره!",
+      "try_again": "دوباره امتحان کن"
+    },
+    "mob": {
+      "sheep": "بع‌بع!|بععع|بع؟",
+      "pig": "خرخر!|خرخر-خرخر|خر؟",
+      "cow": "ماع!|ماااع|ماع؟",
+      "chicken": "قدقد!|قدقدا!|جیک",
+      "creeper": "فسسس...|...|سسسس"
+    },
+    "lock": {
+      "player": "بازیکن",
+      "splashes": "سلام {name}!|بازی متوقف شد!|کریپرها رد نمی‌شن!|استیو نگهبانی می‌ده!|رمزت رو فراموش نکن!|۱۰۰٪ Arch!|حالا با Hyprland!|ساخته شده از بلوک!|AFK!|رفتم الماس بکنم!|Ctrl+Alt+Del کمکی نمی‌کنه!|Serpantinum رو هم امتحان کن!",
+      "paused": "بازی متوقف شد",
+      "password_of": "رمز {name}",
+      "start_typing": "شروع به تایپ کن...",
+      "loading_world": "در حال بارگذاری دنیا...",
+      "checking": "در حال بررسی رمز...",
+      "wrong": "رمز اشتباه است!",
+      "hint": "Enter — ادامه، Esc — پنهان",
+      "press_any": "یک کلید را فشار بده",
+      "charging": "در حال شارژ",
+      "battery": "باتری",
+      "sleep": "خواب",
+      "reboot": "راه‌اندازی مجدد",
+      "power_off": "خاموش کردن",
+      "you_died": "مُردی!",
+      "death_reason": "علت: رمزهای اشتباه زیاد",
+      "respawn": "زنده شدن دوباره"
+    },
+    "inventory": {
+      "title": "موجودی",
+      "search_title": "جستجوی آیتم‌ها",
+      "hotbar": "دسترسی سریع",
+      "hint": "Enter — اجرا · 1-9 — دسترسی سریع · Esc — بستن"
+    },
+    "common": {
+      "search": "جستجو...",
+      "nothing_found": "چیزی پیدا نشد"
+    },
+    "launcher": {
+      "apps": "برنامه‌ها"
+    }
   }
 }

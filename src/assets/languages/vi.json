@@ -1546,5 +1546,97 @@
   },
   "datetime": {
     "full_date": "dddd, d MMMM"
+  },
+  "minecraft": {
+    "steve": {
+      "hi": "Chào!",
+      "hi_name": "Chào {name}!",
+      "friend": "bạn",
+      "ouch": "Ui da!",
+      "dont_touch": "Đừng chạm vào!",
+      "want_diamonds": "Tôi muốn kim cương",
+      "where_pickaxe": "Cuốc của tôi đâu?",
+      "lets_craft": "Chế tạo gì không?",
+      "creeper_behind": "Creeper sau lưng kìa!",
+      "hmm": "Hừm...",
+      "hey": "Này!",
+      "ow": "Á!",
+      "careful": "Cẩn thận!",
+      "again": "Lần nữa!",
+      "wheee": "Yeee!",
+      "hooray": "Hoan hô!",
+      "let_go": "Thả ra!",
+      "five_more_minutes": "Ừm... thêm 5 phút nữa",
+      "flip": "Lộn ngược!",
+      "nice_weather": "Trời đẹp quá",
+      "settings_hi": "Cài đặt nhé?",
+      "like_theme": "Tôi thích chủ đề này",
+      "click_tabs": "Bấm vào các tab đi!",
+      "diamond_button": "Nút «kim cương» đâu nhỉ?",
+      "battery_home": "Pin là nhà của tôi",
+      "dont_turn_off": "Đừng tắt tôi!",
+      "what_now": "Làm gì đây?",
+      "charging": "Đang sạc ⚡",
+      "hungry": "Đói quá... {percent}%",
+      "music": "Nhạc nè!",
+      "louder": "To nữa lên!",
+      "boom": "Bùm-bùm-bùm",
+      "love_track": "Mê bài này quá",
+      "slime_bounce": "Slime nảy tưng tưng!",
+      "quiet_here": "Yên tĩnh ghê...",
+      "loud": "TO QUÁ!!",
+      "shh": "suỵt...",
+      "good_night": "Chúc ngủ ngon...",
+      "woke_up": "Tôi dậy rồi!",
+      "come_back": "Mau quay lại nhé!",
+      "guarding": "Tôi đang canh máy này",
+      "remember_password": "Còn nhớ mật khẩu không?",
+      "bored": "Chán quá...",
+      "will_guard": "Để tôi canh cho, {name}!",
+      "welcome_back": "Chào mừng trở lại!",
+      "wrong_pw": "Á! Sai mật khẩu rồi",
+      "it_hurts": "Đau quá!",
+      "try_again": "Thử lại đi"
+    },
+    "mob": {
+      "sheep": "Be be!|Beeee|Be?",
+      "pig": "Ụt!|Ụt ịt|Ịt?",
+      "cow": "Ò ò!|Òooo|Ò?",
+      "chicken": "Cục ta!|Cục tác!|Chiếp",
+      "creeper": "Xèèè...|...|Sssss"
+    },
+    "lock": {
+      "player": "người chơi",
+      "splashes": "Chào {name}!|Đã tạm dừng!|Creeper không qua được đâu!|Steve đang canh gác!|Đừng quên mật khẩu!|100% Arch!|Giờ có Hyprland!|Xây bằng khối!|AFK!|Đi đào kim cương rồi!|Ctrl+Alt+Del không cứu được đâu!|Thử cả Serpantinum nhé!",
+      "paused": "Trò chơi tạm dừng",
+      "password_of": "Mật khẩu của {name}",
+      "start_typing": "bắt đầu gõ...",
+      "loading_world": "Đang tải thế giới...",
+      "checking": "Đang kiểm tra mật khẩu...",
+      "wrong": "Sai mật khẩu!",
+      "hint": "Enter — tiếp tục, Esc — ẩn",
+      "press_any": "Nhấn phím bất kỳ",
+      "charging": "Đang sạc",
+      "battery": "Pin",
+      "sleep": "Ngủ",
+      "reboot": "Khởi động lại",
+      "power_off": "Tắt máy",
+      "you_died": "Bạn đã chết!",
+      "death_reason": "Nguyên nhân: sai mật khẩu quá nhiều lần",
+      "respawn": "Hồi sinh"
+    },
+    "inventory": {
+      "title": "Túi đồ",
+      "search_title": "Tìm vật phẩm",
+      "hotbar": "Truy cập nhanh",
+      "hint": "Enter — mở · 1-9 — truy cập nhanh · Esc — đóng"
+    },
+    "common": {
+      "search": "Tìm kiếm...",
+      "nothing_found": "Không tìm thấy gì"
+    },
+    "launcher": {
+      "apps": "Ứng dụng"
+    }
   }
 }

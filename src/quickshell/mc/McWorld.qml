@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell.Services.UPower
 import "."
+import "../"
 
 // Live Minecraft wallpaper: real-time sky, drifting hills, flowers, wandering mobs
 // (a creeper comes out at night) and Steve. `running: false` freezes it all.
@@ -122,6 +123,6 @@ Item {
         walkStepMs: world.smoothMotion ? 0 : 150
         px: world.px
         sleeping: world.hour >= 23 || world.hour < 6
-        phrases: ["Привіт!", "Хочу алмазів", "Де моя кирка?", "Покрафтимо?", "Кріпер позаду!", "Гарна погода", "Мммм..."]
+        phrases: [I18n.t("minecraft.steve.hi"), I18n.t("minecraft.steve.want_diamonds"), I18n.t("minecraft.steve.where_pickaxe"), I18n.t("minecraft.steve.lets_craft"), I18n.t("minecraft.steve.creeper_behind"), I18n.t("minecraft.steve.nice_weather"), I18n.t("minecraft.steve.hmm")]
     }
 }

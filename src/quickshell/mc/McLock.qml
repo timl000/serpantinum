@@ -32,7 +32,7 @@ Item {
 
     readonly property int px: Math.max(3, Math.round(height / 270))
     readonly property string userName: {
-        let u = Quickshell.env("USER") || "гравець";
+        let u = Quickshell.env("USER") || I18n.t("minecraft.lock.player");
         return u.charAt(0).toUpperCase() + u.slice(1);
     }
 
@@ -47,9 +47,9 @@ Item {
         if (!failed) return;
         hearts = Math.max(0, hearts - 2);
         shake.restart();
-        steve.hurt(["Ой!", "Ай! Не той пароль", "Боляче!", "Спробуй ще"][Math.floor(Math.random() * 4)]);
+        steve.hurt([I18n.t("minecraft.steve.ouch"), I18n.t("minecraft.steve.wrong_pw"), I18n.t("minecraft.steve.it_hurts"), I18n.t("minecraft.steve.try_again")][Math.floor(Math.random() * 4)]);
     }
-    onUnlockingChanged: if (unlocking) steve.celebrate("З поверненням!")
+    onUnlockingChanged: if (unlocking) steve.celebrate(I18n.t("minecraft.steve.welcome_back"))
     onLockedChanged: {
         if (!locked) return;
         hearts = 10;
@@ -132,12 +132,9 @@ Item {
             rotation: -18
             color: "#ffff55"
             font.pixelSize: root.px * 6
-            readonly property var lines: [
-                "Привіт, " + root.userName + "!", "Гру призупинено!", "Кріпери не пройдуть!", "Стів охороняє!",
-                "Не забудь пароль!", "100% Arch!", "Тепер з Hyprland!", "Збудовано з блоків!", "AFK!",
-                "Відійшов по алмази!", "Ctrl+Alt+Del не допоможе!", "Також спробуйте Serpantinum!"
-            ]
+            readonly property var lines: I18n.t("minecraft.lock.splashes", { name: root.userName }).split("|")
             function pick() { text = lines[Math.floor(Math.random() * lines.length)]; }
+            onLinesChanged: pick()   // translations may load after the lock surface
             Component.onCompleted: pick()
             SequentialAnimation on scale {
                 loops: Animation.Infinite
@@ -196,12 +193,12 @@ Item {
 
             McText {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: "Гру призупинено"
+                text: I18n.t("minecraft.lock.paused")
                 font.pixelSize: root.px * 7
             }
 
             McText {
-                text: "Пароль гравця " + root.userName
+                text: I18n.t("minecraft.lock.password_of", { name: root.userName })
                 color: "#a0a0a0"
                 font.pixelSize: root.px * 4
             }
@@ -238,7 +235,7 @@ Item {
                     anchors.left: parent.left
                     anchors.leftMargin: root.px * 3
                     anchors.verticalCenter: parent.verticalCenter
-                    text: "почни друкувати..."
+                    text: I18n.t("minecraft.lock.start_typing")
                     font.pixelSize: root.px * 5
                     color: "#707070"
                 }
@@ -296,12 +293,12 @@ Item {
                 width: parent.width
                 wrapMode: Text.WordWrap
                 font.pixelSize: root.px * 4
-                text: root.unlocking ? "Завантаження світу..."
-                    : root.authenticating ? "Перевіряю пароль..."
-                    : root.failed ? "Неправильний пароль!"
+                text: root.unlocking ? I18n.t("minecraft.lock.loading_world")
+                    : root.authenticating ? I18n.t("minecraft.lock.checking")
+                    : root.failed ? I18n.t("minecraft.lock.wrong")
                     : root.fingerprint && root.fingerprintText !== "" ? root.fingerprintText
-                    : root.inputActive ? "Enter — продовжити, Esc — сховати"
-                    : "Натисни будь-яку клавішу"
+                    : root.inputActive ? I18n.t("minecraft.lock.hint")
+                    : I18n.t("minecraft.lock.press_any")
                 color: root.failed ? "#ff5555" : (root.unlocking ? "#55ff55" : "#d0d0d0")
                 property bool pulsing: !root.inputActive && root.visible
                 onPulsingChanged: if (!pulsing) opacity = 1
@@ -328,7 +325,7 @@ Item {
             spacing: root.px * 2
             McText {
                 anchors.verticalCenter: parent.verticalCenter
-                text: root.charging ? "Заряджається" : "Батарея"
+                text: root.charging ? I18n.t("minecraft.lock.charging") : I18n.t("minecraft.lock.battery")
                 font.pixelSize: root.px * 4
             }
             Item {
@@ -368,19 +365,19 @@ Item {
         z: 5
         McButton {
             height: root.px * 10
-            label: "Сон"
+            label: I18n.t("minecraft.lock.sleep")
             fontSize: root.px * 4
             onClicked: root.suspendRequested()
         }
         McButton {
             height: root.px * 10
-            label: "Перезавантажити"
+            label: I18n.t("minecraft.lock.reboot")
             fontSize: root.px * 4
             onClicked: root.rebootRequested()
         }
         McButton {
             height: root.px * 10
-            label: "Вимкнути"
+            label: I18n.t("minecraft.lock.power_off")
             fontSize: root.px * 4
             onClicked: root.poweroffRequested()
         }
@@ -398,9 +395,9 @@ Item {
         px: root.px
         forcedPose: root.pwLength > 0 ? "back" : ""
         sleeping: !root.inputActive && root.pwLength === 0 && (root.hour >= 23 || root.hour < 6)
-        phrases: ["Привіт, " + root.userName + "!", "Повертайся швидше!", "Я охороняю цей комп", "Пароль пам'ятаєш?",
-                  "Кріпер позаду!", "Хочу алмазів", "Нудно...", "Гей!", "Покрафтимо?"]
-        onArrivedSignal: say("Я посторожу, " + root.userName + "!")
+        phrases: [I18n.t("minecraft.steve.hi_name", { name: root.userName }), I18n.t("minecraft.steve.come_back"), I18n.t("minecraft.steve.guarding"), I18n.t("minecraft.steve.remember_password"),
+                  I18n.t("minecraft.steve.creeper_behind"), I18n.t("minecraft.steve.want_diamonds"), I18n.t("minecraft.steve.bored"), I18n.t("minecraft.steve.hey"), I18n.t("minecraft.steve.lets_craft")]
+        onArrivedSignal: say(I18n.t("minecraft.steve.will_guard", { name: root.userName }))
     }
 
     // ---- "You died!" after running out of hearts (a joke: typing still works)
@@ -417,12 +414,12 @@ Item {
             spacing: root.px * 8
             McText {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: "Ви загинули!"
+                text: I18n.t("minecraft.lock.you_died")
                 font.pixelSize: root.px * 18
             }
             McText {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: "Причина: забагато неправильних паролів"
+                text: I18n.t("minecraft.lock.death_reason")
                 font.pixelSize: root.px * 5
                 color: "#e0e0e0"
             }
@@ -430,7 +427,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: root.px * 80
                 height: root.px * 11
-                label: "Відродитися"
+                label: I18n.t("minecraft.lock.respawn")
                 fontSize: root.px * 5
                 onClicked: { root.hearts = 10; root.activate(); }
             }

@@ -1546,5 +1546,97 @@
   },
   "datetime": {
     "full_date": "MMMM d일 dddd"
+  },
+  "minecraft": {
+    "steve": {
+      "hi": "안녕!",
+      "hi_name": "안녕, {name}!",
+      "friend": "친구",
+      "ouch": "아야!",
+      "dont_touch": "만지지 마!",
+      "want_diamonds": "다이아 갖고 싶다",
+      "where_pickaxe": "내 곡괭이 어디 있지?",
+      "lets_craft": "제작할래?",
+      "creeper_behind": "뒤에 크리퍼!",
+      "hmm": "음...",
+      "hey": "야!",
+      "ow": "아!",
+      "careful": "조심해!",
+      "again": "한 번 더!",
+      "wheee": "우와!",
+      "hooray": "만세!",
+      "let_go": "놔줘!",
+      "five_more_minutes": "음... 5분만 더",
+      "flip": "공중제비!",
+      "nice_weather": "날씨 좋다",
+      "settings_hi": "설정해 볼까?",
+      "like_theme": "이 테마 좋아",
+      "click_tabs": "탭을 눌러봐!",
+      "diamond_button": "«다이아» 버튼 어디 있어?",
+      "battery_home": "배터리는 내 집",
+      "dont_turn_off": "끄지 마!",
+      "what_now": "뭐 할까?",
+      "charging": "충전 중 ⚡",
+      "hungry": "배고파... {percent}%",
+      "music": "음악이다!",
+      "louder": "더 크게!",
+      "boom": "쿵쿵쿵",
+      "love_track": "이 노래 너무 좋아",
+      "slime_bounce": "슬라임이 통통 튄다!",
+      "quiet_here": "여긴 조용하네...",
+      "loud": "시끄러워!!",
+      "shh": "쉿...",
+      "good_night": "잘 자...",
+      "woke_up": "깼다!",
+      "come_back": "빨리 돌아와!",
+      "guarding": "이 컴퓨터는 내가 지킨다",
+      "remember_password": "비밀번호 기억나?",
+      "bored": "심심해...",
+      "will_guard": "내가 지킬게, {name}!",
+      "welcome_back": "돌아온 걸 환영해!",
+      "wrong_pw": "아야! 비밀번호 틀렸어",
+      "it_hurts": "아파!",
+      "try_again": "다시 해 봐"
+    },
+    "mob": {
+      "sheep": "음매에!|음매애애|음매?",
+      "pig": "꿀!|꿀꿀|꿀?",
+      "cow": "음메!|음메에|음메?",
+      "chicken": "꼬꼬!|꼬끼오!|삐약",
+      "creeper": "치이익...|...|쉬이익"
+    },
+    "lock": {
+      "player": "플레이어",
+      "splashes": "안녕, {name}!|게임 일시정지!|크리퍼는 못 지나간다!|스티브가 지키는 중!|비밀번호 잊지 마!|100% Arch!|이제 Hyprland와 함께!|블록으로 만들었어!|AFK!|다이아 캐러 갔어!|Ctrl+Alt+Del은 소용없어!|Serpantinum도 써 봐!",
+      "paused": "게임 일시정지",
+      "password_of": "{name}의 비밀번호",
+      "start_typing": "입력을 시작하세요...",
+      "loading_world": "월드 불러오는 중...",
+      "checking": "비밀번호 확인 중...",
+      "wrong": "비밀번호가 틀렸어요!",
+      "hint": "Enter — 계속, Esc — 숨기기",
+      "press_any": "아무 키나 누르세요",
+      "charging": "충전 중",
+      "battery": "배터리",
+      "sleep": "절전",
+      "reboot": "다시 시작",
+      "power_off": "시스템 종료",
+      "you_died": "죽었습니다!",
+      "death_reason": "원인: 비밀번호를 너무 많이 틀림",
+      "respawn": "부활"
+    },
+    "inventory": {
+      "title": "인벤토리",
+      "search_title": "아이템 검색",
+      "hotbar": "빠른 실행",
+      "hint": "Enter — 실행 · 1-9 — 빠른 실행 · Esc — 닫기"
+    },
+    "common": {
+      "search": "검색...",
+      "nothing_found": "찾을 수 없음"
+    },
+    "launcher": {
+      "apps": "앱"
+    }
   }
 }

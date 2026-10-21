@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Effects
 import "."
+import "../"
 
 // Mini Steve visiting a popup. Fill the popup with this item and point `target` at the
 // element he should stand on; he arrives in the given style each time `active` turns on:
@@ -22,7 +23,7 @@ Item {
     property bool sleeping: false     // lies down with z's
     property bool tired: false        // walks slowly
     property string forcedPose: ""   // e.g. "back" while a password is being typed
-    property var phrases: ["Привіт!", "Ой!", "Не чіпай!", "Хочу алмазів", "Де моя кирка?", "Покрафтимо?", "Кріпер позаду!", "Мммм...", "Гей!"]
+    property var phrases: [I18n.t("minecraft.steve.hi"), I18n.t("minecraft.steve.ouch"), I18n.t("minecraft.steve.dont_touch"), I18n.t("minecraft.steve.want_diamonds"), I18n.t("minecraft.steve.where_pickaxe"), I18n.t("minecraft.steve.lets_craft"), I18n.t("minecraft.steve.creeper_behind"), I18n.t("minecraft.steve.hmm"), I18n.t("minecraft.steve.hey")]
 
     // Target geometry in our coordinates, refreshed while visible (targets may animate).
     property real tx: 0
@@ -226,7 +227,7 @@ Item {
             script: {
                 fx.colors = ["#9a9a9a", "#c8c8c8", "#6a6a6a"];
                 fx.burst(visitor.steveCx, visitor.floorY);
-                visitor.say(["Ай!", "Обережно!", "Ще раз!", "Вуу!"][Math.floor(Math.random() * 4)], 1600);
+                visitor.say([I18n.t("minecraft.steve.ow"), I18n.t("minecraft.steve.careful"), I18n.t("minecraft.steve.again"), I18n.t("minecraft.steve.wheee")][Math.floor(Math.random() * 4)], 1600);
             }
         }
     }
@@ -237,7 +238,7 @@ Item {
         if (!arrived) return;
         walk.stop(); visitor.stepping = false;
         hurtAnim.restart();
-        say(text || "Ой!", 2000);
+        say(text || I18n.t("minecraft.steve.ouch"), 2000);
     }
     SequentialAnimation {
         id: hurtAnim
@@ -253,7 +254,7 @@ Item {
     }
     function celebrate(text) {
         if (!arrived) return;
-        say(text || "Ура!", 3000);
+        say(text || I18n.t("minecraft.steve.hooray"), 3000);
         flip.restart();
         fx.colors = ["#ff5555", "#ffff55", "#55ffff", "#55ff55", "#ff55ff", "#ffffff"];
         fx.burst(steveCx, floorY - steveH * 2);
@@ -441,7 +442,7 @@ Item {
                     hopAnim.stop();
                     visitor.hopY = 0;
                     visitor.dragging = true;
-                    visitor.say("Пусти!", 1500);
+                    visitor.say(I18n.t("minecraft.steve.let_go"), 1500);
                 }
                 if (visitor.dragging) {
                     visitor.dragX = Math.max(0, Math.min(visitor.width, p.x));
@@ -462,7 +463,7 @@ Item {
                     return;
                 }
                 if (visitor.sleeping) {
-                    visitor.say("Ммм... ще 5 хвилин", 1800);
+                    visitor.say(I18n.t("minecraft.steve.five_more_minutes"), 1800);
                     return;
                 }
                 visitor.hop();
@@ -472,7 +473,7 @@ Item {
                 if (mouse.button === Qt.LeftButton && !visitor.sleeping && !visitor.busy) {
                     hopAnim.stop();
                     flip.restart();
-                    visitor.say("Сальто!", 1400);
+                    visitor.say(I18n.t("minecraft.steve.flip"), 1400);
                 }
             }
         }

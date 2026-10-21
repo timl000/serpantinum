@@ -1546,5 +1546,97 @@
   },
   "datetime": {
     "full_date": "MMMM d日 dddd"
+  },
+  "minecraft": {
+    "steve": {
+      "hi": "你好！",
+      "hi_name": "你好，{name}！",
+      "friend": "朋友",
+      "ouch": "哎哟！",
+      "dont_touch": "别碰我！",
+      "want_diamonds": "我想要钻石",
+      "where_pickaxe": "我的镐呢？",
+      "lets_craft": "来合成吧？",
+      "creeper_behind": "身后有苦力怕！",
+      "hmm": "嗯……",
+      "hey": "嘿！",
+      "ow": "哎！",
+      "careful": "小心！",
+      "again": "再来！",
+      "wheee": "呜呼！",
+      "hooray": "好耶！",
+      "let_go": "放开我！",
+      "five_more_minutes": "嗯……再睡5分钟",
+      "flip": "后空翻！",
+      "nice_weather": "天气真好",
+      "settings_hi": "来调一调？",
+      "like_theme": "我喜欢这个主题",
+      "click_tabs": "点点标签页！",
+      "diamond_button": "“钻石”按钮在哪？",
+      "battery_home": "电池就是我的家",
+      "dont_turn_off": "别关掉我！",
+      "what_now": "干点啥？",
+      "charging": "充电中 ⚡",
+      "hungry": "饿了…… {percent}%",
+      "music": "音乐！",
+      "louder": "再大声点！",
+      "boom": "咚咚咚",
+      "love_track": "我超爱这首歌",
+      "slime_bounce": "史莱姆弹弹的！",
+      "quiet_here": "好安静……",
+      "loud": "好吵！！",
+      "shh": "嘘……",
+      "good_night": "晚安……",
+      "woke_up": "我醒啦！",
+      "come_back": "快回来！",
+      "guarding": "这台电脑由我守护",
+      "remember_password": "还记得密码吗？",
+      "bored": "好无聊……",
+      "will_guard": "我来站岗，{name}！",
+      "welcome_back": "欢迎回来！",
+      "wrong_pw": "哎！密码错了",
+      "it_hurts": "好痛！",
+      "try_again": "再试试"
+    },
+    "mob": {
+      "sheep": "咩！|咩咩咩|咩？",
+      "pig": "哼！|哼哼|哼？",
+      "cow": "哞！|哞哞|哞？",
+      "chicken": "咯咯！|咯咯哒！|叽",
+      "creeper": "嘶嘶……|……|嘶嘶"
+    },
+    "lock": {
+      "player": "玩家",
+      "splashes": "你好，{name}！|游戏已暂停！|苦力怕休想通过！|史蒂夫在站岗！|别忘了密码！|100% Arch！|现已支持 Hyprland！|方块搭成！|挂机中！|挖钻石去了！|Ctrl+Alt+Del 也没用！|也试试 Serpantinum！",
+      "paused": "游戏已暂停",
+      "password_of": "{name} 的密码",
+      "start_typing": "开始输入……",
+      "loading_world": "正在加载世界……",
+      "checking": "正在验证密码……",
+      "wrong": "密码错误！",
+      "hint": "Enter — 继续，Esc — 隐藏",
+      "press_any": "按任意键",
+      "charging": "充电中",
+      "battery": "电池",
+      "sleep": "睡眠",
+      "reboot": "重启",
+      "power_off": "关机",
+      "you_died": "你死了！",
+      "death_reason": "死因：密码错太多次",
+      "respawn": "重生"
+    },
+    "inventory": {
+      "title": "物品栏",
+      "search_title": "搜索物品",
+      "hotbar": "快捷栏",
+      "hint": "Enter — 启动 · 1-9 — 快捷栏 · Esc — 关闭"
+    },
+    "common": {
+      "search": "搜索……",
+      "nothing_found": "什么也没找到"
+    },
+    "launcher": {
+      "apps": "应用"
+    }
   }
 }

@@ -1546,5 +1546,97 @@
   },
   "datetime": {
     "full_date": "MMMM d日 dddd"
+  },
+  "minecraft": {
+    "steve": {
+      "hi": "你好！",
+      "hi_name": "你好，{name}！",
+      "friend": "朋友",
+      "ouch": "哎喲！",
+      "dont_touch": "別碰我！",
+      "want_diamonds": "我想要鑽石",
+      "where_pickaxe": "我的鎬呢？",
+      "lets_craft": "來合成吧？",
+      "creeper_behind": "身後有苦力怕！",
+      "hmm": "嗯……",
+      "hey": "嘿！",
+      "ow": "哎！",
+      "careful": "小心！",
+      "again": "再來！",
+      "wheee": "嗚呼！",
+      "hooray": "好耶！",
+      "let_go": "放開我！",
+      "five_more_minutes": "嗯……再睡5分鐘",
+      "flip": "後空翻！",
+      "nice_weather": "天氣真好",
+      "settings_hi": "來調一調？",
+      "like_theme": "我喜歡這個主題",
+      "click_tabs": "點點分頁！",
+      "diamond_button": "「鑽石」按鈕在哪？",
+      "battery_home": "電池就是我的家",
+      "dont_turn_off": "別關掉我！",
+      "what_now": "幹點啥？",
+      "charging": "充電中 ⚡",
+      "hungry": "餓了…… {percent}%",
+      "music": "音樂！",
+      "louder": "再大聲點！",
+      "boom": "咚咚咚",
+      "love_track": "我超愛這首歌",
+      "slime_bounce": "史萊姆彈彈的！",
+      "quiet_here": "好安靜……",
+      "loud": "好吵！！",
+      "shh": "噓……",
+      "good_night": "晚安……",
+      "woke_up": "我醒啦！",
+      "come_back": "快回來！",
+      "guarding": "這台電腦由我守護",
+      "remember_password": "還記得密碼嗎？",
+      "bored": "好無聊……",
+      "will_guard": "我來站崗，{name}！",
+      "welcome_back": "歡迎回來！",
+      "wrong_pw": "哎！密碼錯了",
+      "it_hurts": "好痛！",
+      "try_again": "再試試"
+    },
+    "mob": {
+      "sheep": "咩！|咩咩咩|咩？",
+      "pig": "哼！|哼哼|哼？",
+      "cow": "哞！|哞哞|哞？",
+      "chicken": "咯咯！|咯咯噠！|嘰",
+      "creeper": "嘶嘶……|……|嘶嘶"
+    },
+    "lock": {
+      "player": "玩家",
+      "splashes": "你好，{name}！|遊戲已暫停！|苦力怕休想通過！|史蒂夫在站崗！|別忘了密碼！|100% Arch！|現已支援 Hyprland！|方塊搭成！|掛機中！|挖鑽石去了！|Ctrl+Alt+Del 也沒用！|也試試 Serpantinum！",
+      "paused": "遊戲已暫停",
+      "password_of": "{name} 的密碼",
+      "start_typing": "開始輸入……",
+      "loading_world": "正在載入世界……",
+      "checking": "正在驗證密碼……",
+      "wrong": "密碼錯誤！",
+      "hint": "Enter — 繼續，Esc — 隱藏",
+      "press_any": "按任意鍵",
+      "charging": "充電中",
+      "battery": "電池",
+      "sleep": "睡眠",
+      "reboot": "重新啟動",
+      "power_off": "關機",
+      "you_died": "你死了！",
+      "death_reason": "死因：密碼錯太多次",
+      "respawn": "重生"
+    },
+    "inventory": {
+      "title": "物品欄",
+      "search_title": "搜尋物品",
+      "hotbar": "快捷欄",
+      "hint": "Enter — 啟動 · 1-9 — 快捷欄 · Esc — 關閉"
+    },
+    "common": {
+      "search": "搜尋……",
+      "nothing_found": "什麼也沒找到"
+    },
+    "launcher": {
+      "apps": "應用程式"
+    }
   }
 }

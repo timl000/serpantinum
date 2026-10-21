@@ -1546,5 +1546,97 @@
       "prompt": "入力して設定を検索...",
       "no_results": "設定が見つかりませんでした"
     }
+  },
+  "minecraft": {
+    "steve": {
+      "hi": "やあ！",
+      "hi_name": "やあ、{name}！",
+      "friend": "友よ",
+      "ouch": "いてっ！",
+      "dont_touch": "さわらないで！",
+      "want_diamonds": "ダイヤがほしい",
+      "where_pickaxe": "ツルハシどこ？",
+      "lets_craft": "クラフトしよう？",
+      "creeper_behind": "後ろにクリーパー！",
+      "hmm": "うーん…",
+      "hey": "おーい！",
+      "ow": "いたっ！",
+      "careful": "気をつけて！",
+      "again": "もう一回！",
+      "wheee": "わーい！",
+      "hooray": "やったー！",
+      "let_go": "はなして！",
+      "five_more_minutes": "んー…あと5分…",
+      "flip": "バク宙！",
+      "nice_weather": "いい天気",
+      "settings_hi": "設定しよっか？",
+      "like_theme": "このテーマ好き",
+      "click_tabs": "タブを押してみて！",
+      "diamond_button": "「ダイヤ」ボタンはどこ？",
+      "battery_home": "バッテリーがおうち",
+      "dont_turn_off": "電源切らないで！",
+      "what_now": "何しよう？",
+      "charging": "充電中 ⚡",
+      "hungry": "おなかすいた… {percent}%",
+      "music": "音楽だ！",
+      "louder": "もっと大きく！",
+      "boom": "ドンドンドン",
+      "love_track": "この曲大好き",
+      "slime_bounce": "スライムがぽよんぽよん！",
+      "quiet_here": "静かだね…",
+      "loud": "うるさい！！",
+      "shh": "しーっ…",
+      "good_night": "おやすみ…",
+      "woke_up": "起きた！",
+      "come_back": "早く戻ってきてね！",
+      "guarding": "このPCは僕が守る",
+      "remember_password": "パスワード覚えてる？",
+      "bored": "ひまだな…",
+      "will_guard": "見張っとくね、{name}！",
+      "welcome_back": "おかえり！",
+      "wrong_pw": "いたっ！パスワード違う",
+      "it_hurts": "痛いよ！",
+      "try_again": "もう一回"
+    },
+    "mob": {
+      "sheep": "メェ〜！|メェェェ|メェ？",
+      "pig": "ブヒッ！|ブヒブヒ|ブヒ？",
+      "cow": "モー！|モォォ|モー？",
+      "chicken": "コッコ！|コケッ！|ピヨ",
+      "creeper": "シュー…|…|シュルル"
+    },
+    "lock": {
+      "player": "プレイヤー",
+      "splashes": "やあ、{name}！|ゲーム一時停止中！|クリーパーは通さない！|スティーブが見張り中！|パスワード忘れないで！|100% Arch！|Hyprland対応！|ブロックでできてる！|AFK！|ダイヤ掘りに行ってます！|Ctrl+Alt+Delは効かないよ！|Serpantinumもどうぞ！",
+      "paused": "ゲームを一時停止中",
+      "password_of": "{name} のパスワード",
+      "start_typing": "入力してね…",
+      "loading_world": "ワールドを読み込み中…",
+      "checking": "パスワードを確認中…",
+      "wrong": "パスワードが違います！",
+      "hint": "Enter — 続ける、Esc — 隠す",
+      "press_any": "いずれかのキーを押してね",
+      "charging": "充電中",
+      "battery": "バッテリー",
+      "sleep": "スリープ",
+      "reboot": "再起動",
+      "power_off": "シャットダウン",
+      "you_died": "死んでしまった！",
+      "death_reason": "原因：パスワードの間違いが多すぎた",
+      "respawn": "リスポーン"
+    },
+    "inventory": {
+      "title": "インベントリ",
+      "search_title": "アイテム検索",
+      "hotbar": "クイックアクセス",
+      "hint": "Enter — 起動 · 1-9 — クイックアクセス · Esc — 閉じる"
+    },
+    "common": {
+      "search": "検索…",
+      "nothing_found": "見つかりません"
+    },
+    "launcher": {
+      "apps": "アプリ"
+    }
   }
 }

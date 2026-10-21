@@ -1,5 +1,6 @@
 import QtQuick
 import "."
+import "../"
 
 // A little side-view mob that wanders along a strip of ground: picks a spot, walks
 // there with a two-frame leg cycle, idles, repeats. Click it for a hop and its sound.
@@ -25,32 +26,32 @@ Item {
             body: ["..WWWWWWW.....", ".WWWWWWWWWW...", "WWWWWWWWWWWHHH", "WWWWwWWWWWWHeH", "WWWWWWWwWWWHHH",
                    "WWwWWWWWWWW.HH", ".WWWWWWWWWW..."],
             legs: [[".L.L.....L.L..", ".L.L.....L.L.."], ["L...L...L...L.", ".L.L.....L.L.."]],
-            say: ["Бее!", "Беееее", "Мее?"]
+            say: I18n.t("minecraft.mob.sheep").split("|")
         },
         "pig": {
             pal: { "P": "#f2a5a5", "p": "#e08b8b", "S": "#e88a8a", "n": "#a0505a", "e": "#1a1a1a", "w": "#ffffff" },
             body: ["........PPPP", "PPPPPPPPPwePP".slice(0, 12), "PPPPPPPPPPSS", "PPPPpPPPPPSn", "PPPPPPPPPP.."],
             legs: [["pp.....pp...", "pp.....pp..."], [".pp...pp....", "pp.....pp..."]],
-            say: ["Хрю!", "Хрю-хрю", "Рох?"]
+            say: I18n.t("minecraft.mob.pig").split("|")
         },
         "cow": {
             pal: { "B": "#4a3424", "W": "#e8e8e8", "H": "#3a2a1c", "h": "#c8c8c8", "e": "#111111", "n": "#bfa08a", "L": "#3a2a1c" },
             body: ["..........hh..", "..........HHHH", "BBBWWBBBBBHeHH", "BWWWBBBWWBHHnn", "BBBBBBWWWBBBnn",
                    "BWWBBBBBBBB...", "BBBBWWBBBBB..."],
             legs: [[".LL......LL...", ".LL......LL..."], ["LL......LL....", ".LL......LL..."]],
-            say: ["Муу!", "Мууу", "Му?"]
+            say: I18n.t("minecraft.mob.cow").split("|")
         },
         "chicken": {
             pal: { "W": "#f4f4f4", "w": "#d8d8d8", "R": "#d03030", "Y": "#f0b020", "e": "#1a1a1a", "O": "#e09020" },
             body: ["....WW..", "....WeY.", "....WWR.", "WWWWWW..", "WwwWWW..", ".WWWW..."],
             legs: [["..O.O...", "..O.O..."], ["...O....", "..O.O..."]],
-            say: ["Ко-ко!", "Кудах!", "Пі-пі"]
+            say: I18n.t("minecraft.mob.chicken").split("|")
         },
         "creeper": {
             pal: { "G": "#4fa83a", "g": "#2f6f22", "d": "#1f3f18", "l": "#7fd06a" },
             body: ["GlGG", "GdGG", "GGdG", "GGGG", ".GG.", ".gG.", ".GG.", ".Gl.", ".GG.", ".gG."],
             legs: [["GGGG", "G..G"], ["GGGG", ".GG."]],
-            say: ["Тсссс...", "...", "Ссссс"]
+            say: I18n.t("minecraft.mob.creeper").split("|")
         }
     })
     readonly property var def: defs[kind] || defs["sheep"]

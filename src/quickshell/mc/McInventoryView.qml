@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell
 import "."
+import "../"
 
 // Creative-inventory app launcher. Grid of app "items", a search box, a hotbar with the
 // nine most used apps, and the purple item tooltip. Purely UI: the window, ranking data
@@ -208,7 +209,7 @@ Item {
                 height: 12 * inv.k
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: inv.query === "" ? "Інвентар" : "Пошук предметів"
+                    text: inv.query === "" ? I18n.t("minecraft.inventory.title") : I18n.t("minecraft.inventory.search_title")
                     font.family: "Monocraft"
                     font.pixelSize: inv.k * 7
                     color: "#404040"
@@ -250,7 +251,7 @@ Item {
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
                             visible: search.text === ""
-                            text: "Шукати..."
+                            text: I18n.t("minecraft.common.search")
                             font: search.font
                             color: "#707070"
                         }
@@ -305,7 +306,7 @@ Item {
                     visible: inv.shown.length === 0
                     parent: grid
                     anchors.centerIn: parent
-                    text: "Нічого не знайдено"
+                    text: I18n.t("minecraft.common.nothing_found")
                     color: "#404040"
                     shadowColor: "transparent"
                     font.pixelSize: inv.k * 6
@@ -331,7 +332,7 @@ Item {
 
             // Hotbar: nine most used apps, keys 1-9
             Text {
-                text: "Швидкий доступ"
+                text: I18n.t("minecraft.inventory.hotbar")
                 font.family: "Monocraft"
                 font.pixelSize: inv.k * 5
                 color: "#404040"
@@ -364,7 +365,7 @@ Item {
         anchors.horizontalCenter: gui.horizontalCenter
         anchors.top: gui.bottom
         anchors.topMargin: 4 * inv.k
-        text: "Enter — запустити · 1-9 — швидкий доступ · Esc — закрити"
+        text: I18n.t("minecraft.inventory.hint")
         font.pixelSize: inv.k * 5
         color: "#e0e0e0"
     }

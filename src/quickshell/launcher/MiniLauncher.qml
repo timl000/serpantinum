@@ -169,7 +169,7 @@ PanelWindow {
                     x: 13
                     spacing: 9
                     McText {
-                        text: "Програми"
+                        text: I18n.t("minecraft.launcher.apps")
                         color: "#a0a0a0"
                         font.family: "Monocraft"
                         font.pixelSize: 14
@@ -191,7 +191,7 @@ PanelWindow {
                         }
                         Text {
                             visible: search.text === ""
-                            text: "Пошук..."
+                            text: I18n.t("minecraft.common.search")
                             color: "#777777"
                             font: search.font
                         }
@@ -280,7 +280,7 @@ PanelWindow {
                 McText {
                     visible: win.shownApps.length === 0
                     anchors.centerIn: parent
-                    text: "Нічого не знайдено"
+                    text: I18n.t("minecraft.common.nothing_found")
                     color: "#a0a0a0"
                     font.family: "Monocraft"
                     font.pixelSize: 14

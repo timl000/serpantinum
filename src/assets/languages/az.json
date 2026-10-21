@@ -1540,5 +1540,97 @@
   },
   "datetime": {
     "full_date": "dddd, MMMM dd"
+  },
+  "minecraft": {
+    "steve": {
+      "hi": "Salam!",
+      "hi_name": "Salam, {name}!",
+      "friend": "dostum",
+      "ouch": "Ay!",
+      "dont_touch": "Toxunma!",
+      "want_diamonds": "Almaz istəyirəm",
+      "where_pickaxe": "Külüngüm haradadır?",
+      "lets_craft": "Craft edək?",
+      "creeper_behind": "Arxanda creeper var!",
+      "hmm": "Hımm...",
+      "hey": "Hey!",
+      "ow": "Uf!",
+      "careful": "Ehtiyatla!",
+      "again": "Bir də!",
+      "wheee": "Vuhuu!",
+      "hooray": "Yaşasın!",
+      "let_go": "Burax!",
+      "five_more_minutes": "Mmm... daha 5 dəqiqə",
+      "flip": "Salto!",
+      "nice_weather": "Hava gözəldir",
+      "settings_hi": "Tənzimləyək?",
+      "like_theme": "Bu mövzunu bəyənirəm",
+      "click_tabs": "Vərəqlərə toxun!",
+      "diamond_button": "«Almaz» düyməsi haradadır?",
+      "battery_home": "Batareya mənim evimdir",
+      "dont_turn_off": "Məni söndürmə!",
+      "what_now": "Nə edirik?",
+      "charging": "Şarj olunuram ⚡",
+      "hungry": "Acmışam... {percent}%",
+      "music": "Musiqi!",
+      "louder": "Daha bərk!",
+      "boom": "Bum-bum-bum",
+      "love_track": "Bu mahnını sevirəm",
+      "slime_bounce": "Slaym sıçrayır!",
+      "quiet_here": "Burada səssizdir...",
+      "loud": "BƏRK!!",
+      "shh": "şşş...",
+      "good_night": "Gecən xeyrə...",
+      "woke_up": "Oyandım!",
+      "come_back": "Tez qayıt!",
+      "guarding": "Bu kompüteri qoruyuram",
+      "remember_password": "Parolu xatırlayırsan?",
+      "bored": "Darıxıram...",
+      "will_guard": "Mən keşik çəkərəm, {name}!",
+      "welcome_back": "Xoş gəldin!",
+      "wrong_pw": "Uf! Səhv parol",
+      "it_hurts": "Ağrıyır!",
+      "try_again": "Yenidən cəhd et"
+    },
+    "mob": {
+      "sheep": "Mee!|Meeee|Mee?",
+      "pig": "Xor!|Xor-xor|Xork?",
+      "cow": "Mö!|Möö|Mö?",
+      "chicken": "Qıt!|Qaqqıl!|Cik",
+      "creeper": "Tssss...|...|Sssss"
+    },
+    "lock": {
+      "player": "oyunçu",
+      "splashes": "Salam, {name}!|Oyun dayandırılıb!|Creeperlər keçə bilməz!|Steve keşikdədir!|Parolunu unutma!|100% Arch!|İndi Hyprland ilə!|Bloklardan tikilib!|AFK!|Almaz qazmağa getdim!|Ctrl+Alt+Del kömək etməz!|Serpantinum-u da sınayın!",
+      "paused": "Oyun dayandırılıb",
+      "password_of": "{name} oyunçusunun parolu",
+      "start_typing": "yazmağa başla...",
+      "loading_world": "Dünya yüklənir...",
+      "checking": "Parol yoxlanılır...",
+      "wrong": "Səhv parol!",
+      "hint": "Enter — davam, Esc — gizlət",
+      "press_any": "İstənilən düyməni bas",
+      "charging": "Şarj olunur",
+      "battery": "Batareya",
+      "sleep": "Yuxu",
+      "reboot": "Yenidən başlat",
+      "power_off": "Söndür",
+      "you_died": "Öldün!",
+      "death_reason": "Səbəb: həddindən çox səhv parol",
+      "respawn": "Yenidən doğul"
+    },
+    "inventory": {
+      "title": "İnventar",
+      "search_title": "Əşya axtar",
+      "hotbar": "Sürətli giriş",
+      "hint": "Enter — başlat · 1-9 — sürətli giriş · Esc — bağla"
+    },
+    "common": {
+      "search": "Axtar...",
+      "nothing_found": "Heç nə tapılmadı"
+    },
+    "launcher": {
+      "apps": "Tətbiqlər"
+    }
   }
 }

@@ -1094,7 +1094,7 @@ Item {
         style: "nether"
         target: sidebar.activeHighlightItem
         px: Math.max(3, Math.round(Scaler.s(3)))
-        phrases: ["Налаштуємо?", "Мені подобається ця тема", "Тицяй вкладки!", "Ой!", "Де тут кнопка «алмази»?"]
-        onArrivedSignal: say("Налаштуємо?")
+        phrases: [I18n.t("minecraft.steve.settings_hi"), I18n.t("minecraft.steve.like_theme"), I18n.t("minecraft.steve.click_tabs"), I18n.t("minecraft.steve.ouch"), I18n.t("minecraft.steve.diamond_button")]
+        onArrivedSignal: say(I18n.t("minecraft.steve.settings_hi"))
     }
 }

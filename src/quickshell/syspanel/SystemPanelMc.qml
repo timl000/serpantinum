@@ -706,11 +706,11 @@ Item {
         homeFrac: 0.3
         px: Math.max(3, Math.round(Scaler.s(3)))
         tired: !root.isDesktop && root.batCapacity <= 20 && !root.isCharging
-        phrases: ["Привіт!", "Батарея — мій дім", "Не вимикай мене!", "Що робимо?", "Кріпер позаду!", "Ой!"]
+        phrases: [I18n.t("minecraft.steve.hi"), I18n.t("minecraft.steve.battery_home"), I18n.t("minecraft.steve.dont_turn_off"), I18n.t("minecraft.steve.what_now"), I18n.t("minecraft.steve.creeper_behind"), I18n.t("minecraft.steve.ouch")]
         onArrivedSignal: {
-            if (root.isCharging) say("Заряджаюсь ⚡");
-            else if (tired) say("Їсти хочу... " + root.batCapacity + "%");
-            else say("Привіт, " + (typeof SystemInfo !== "undefined" && SystemInfo.username ? SystemInfo.username : "друже") + "!");
+            if (root.isCharging) say(I18n.t("minecraft.steve.charging"));
+            else if (tired) say(I18n.t("minecraft.steve.hungry", { percent: root.batCapacity }));
+            else say(I18n.t("minecraft.steve.hi_name", { name: (typeof SystemInfo !== "undefined" && SystemInfo.username ? SystemInfo.username : I18n.t("minecraft.steve.friend")) }));
         }
     }
 }

@@ -1546,5 +1546,97 @@
       "prompt": "Wpisz, aby wyszukać w ustawieniach...",
       "no_results": "Nie znaleziono ustawień"
     }
+  },
+  "minecraft": {
+    "steve": {
+      "hi": "Cześć!",
+      "hi_name": "Cześć, {name}!",
+      "friend": "przyjacielu",
+      "ouch": "Auć!",
+      "dont_touch": "Nie dotykaj!",
+      "want_diamonds": "Chcę diamentów",
+      "where_pickaxe": "Gdzie mój kilof?",
+      "lets_craft": "Pokraftujemy?",
+      "creeper_behind": "Creeper za tobą!",
+      "hmm": "Hmmm...",
+      "hey": "Hej!",
+      "ow": "Aj!",
+      "careful": "Ostrożnie!",
+      "again": "Jeszcze raz!",
+      "wheee": "Juhu!",
+      "hooray": "Hurra!",
+      "let_go": "Puść!",
+      "five_more_minutes": "Mmm... jeszcze 5 minut",
+      "flip": "Salto!",
+      "nice_weather": "Ładna pogoda",
+      "settings_hi": "Ustawiamy?",
+      "like_theme": "Lubię ten motyw",
+      "click_tabs": "Klikaj zakładki!",
+      "diamond_button": "Gdzie jest przycisk „diamenty”?",
+      "battery_home": "Bateria to mój dom",
+      "dont_turn_off": "Nie wyłączaj mnie!",
+      "what_now": "Co robimy?",
+      "charging": "Ładuję się ⚡",
+      "hungry": "Głodny... {percent}%",
+      "music": "Muzyczka!",
+      "louder": "Głośniej!",
+      "boom": "Bum-bum-bum",
+      "love_track": "Uwielbiam ten kawałek",
+      "slime_bounce": "Szlam sprężynuje!",
+      "quiet_here": "Cicho tu...",
+      "loud": "GŁOŚNO!!",
+      "shh": "ćśśś...",
+      "good_night": "Dobranoc...",
+      "woke_up": "Obudziłem się!",
+      "come_back": "Wracaj szybko!",
+      "guarding": "Pilnuję tego kompa",
+      "remember_password": "Pamiętasz hasło?",
+      "bored": "Nudy...",
+      "will_guard": "Popilnuję, {name}!",
+      "welcome_back": "Witaj z powrotem!",
+      "wrong_pw": "Auć! Złe hasło",
+      "it_hurts": "Boli!",
+      "try_again": "Spróbuj jeszcze"
+    },
+    "mob": {
+      "sheep": "Beee!|Beeeee|Meee?",
+      "pig": "Chrum!|Chrum-chrum|Chrumk?",
+      "cow": "Muu!|Muuu|Mu?",
+      "chicken": "Ko-ko!|Kokoko!|Pi-pi",
+      "creeper": "Sssss...|...|Ssss"
+    },
+    "lock": {
+      "player": "gracz",
+      "splashes": "Cześć, {name}!|Gra wstrzymana!|Creepery nie przejdą!|Steve na straży!|Nie zapomnij hasła!|100% Arch!|Teraz z Hyprland!|Zbudowane z bloków!|AFK!|Poszedłem po diamenty!|Ctrl+Alt+Del nie pomoże!|Wypróbuj też Serpantinum!",
+      "paused": "Gra wstrzymana",
+      "password_of": "Hasło gracza {name}",
+      "start_typing": "zacznij pisać...",
+      "loading_world": "Wczytywanie świata...",
+      "checking": "Sprawdzam hasło...",
+      "wrong": "Nieprawidłowe hasło!",
+      "hint": "Enter — dalej, Esc — ukryj",
+      "press_any": "Naciśnij dowolny klawisz",
+      "charging": "Ładowanie",
+      "battery": "Bateria",
+      "sleep": "Uśpij",
+      "reboot": "Uruchom ponownie",
+      "power_off": "Wyłącz",
+      "you_died": "Zginąłeś!",
+      "death_reason": "Przyczyna: zbyt wiele błędnych haseł",
+      "respawn": "Odrodź się"
+    },
+    "inventory": {
+      "title": "Ekwipunek",
+      "search_title": "Szukaj przedmiotów",
+      "hotbar": "Szybki dostęp",
+      "hint": "Enter — uruchom · 1-9 — szybki dostęp · Esc — zamknij"
+    },
+    "common": {
+      "search": "Szukaj...",
+      "nothing_found": "Nic nie znaleziono"
+    },
+    "launcher": {
+      "apps": "Aplikacje"
+    }
   }
 }

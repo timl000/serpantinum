@@ -1546,5 +1546,97 @@
   },
   "datetime": {
     "full_date": "dddd, d MMMM"
+  },
+  "minecraft": {
+    "steve": {
+      "hi": "Hai!",
+      "hi_name": "Hai, {name}!",
+      "friend": "teman",
+      "ouch": "Aduh!",
+      "dont_touch": "Jangan sentuh!",
+      "want_diamonds": "Aku mau berlian",
+      "where_pickaxe": "Di mana beliungku?",
+      "lets_craft": "Mau nge-craft?",
+      "creeper_behind": "Ada creeper di belakangmu!",
+      "hmm": "Hmmm...",
+      "hey": "Hei!",
+      "ow": "Aw!",
+      "careful": "Hati-hati!",
+      "again": "Lagi!",
+      "wheee": "Wuhuu!",
+      "hooray": "Hore!",
+      "let_go": "Lepaskan!",
+      "five_more_minutes": "Hmm... 5 menit lagi",
+      "flip": "Salto!",
+      "nice_weather": "Cuacanya bagus",
+      "settings_hi": "Mau atur-atur?",
+      "like_theme": "Aku suka tema ini",
+      "click_tabs": "Klik tab-nya!",
+      "diamond_button": "Mana tombol «berlian»?",
+      "battery_home": "Baterai adalah rumahku",
+      "dont_turn_off": "Jangan matikan aku!",
+      "what_now": "Kita ngapain?",
+      "charging": "Lagi ngecas ⚡",
+      "hungry": "Lapar... {percent}%",
+      "music": "Musik!",
+      "louder": "Lebih keras!",
+      "boom": "Bum-bum-bum",
+      "love_track": "Aku suka lagu ini",
+      "slime_bounce": "Slime-nya memantul!",
+      "quiet_here": "Sepi di sini...",
+      "loud": "KERAS!!",
+      "shh": "sst...",
+      "good_night": "Selamat tidur...",
+      "woke_up": "Aku bangun!",
+      "come_back": "Cepat kembali!",
+      "guarding": "Aku menjaga PC ini",
+      "remember_password": "Ingat kata sandimu?",
+      "bored": "Bosan...",
+      "will_guard": "Aku yang jaga, {name}!",
+      "welcome_back": "Selamat datang kembali!",
+      "wrong_pw": "Aduh! Kata sandi salah",
+      "it_hurts": "Sakit!",
+      "try_again": "Coba lagi"
+    },
+    "mob": {
+      "sheep": "Mbeek!|Mbeeek|Mbek?",
+      "pig": "Ngok!|Ngok-ngok|Ngrok?",
+      "cow": "Mooo!|Moooo|Mooh?",
+      "chicken": "Petok!|Kukuruyuk!|Ciap",
+      "creeper": "Ssssh...|...|Sssss"
+    },
+    "lock": {
+      "player": "pemain",
+      "splashes": "Hai, {name}!|Game dijeda!|Creeper tak akan lewat!|Steve berjaga!|Jangan lupa kata sandi!|100% Arch!|Kini dengan Hyprland!|Dibangun dari balok!|AFK!|Lagi nambang berlian!|Ctrl+Alt+Del tak akan membantu!|Coba juga Serpantinum!",
+      "paused": "Game dijeda",
+      "password_of": "Kata sandi {name}",
+      "start_typing": "mulai mengetik...",
+      "loading_world": "Memuat dunia...",
+      "checking": "Memeriksa kata sandi...",
+      "wrong": "Kata sandi salah!",
+      "hint": "Enter — lanjut, Esc — sembunyikan",
+      "press_any": "Tekan tombol apa saja",
+      "charging": "Mengisi daya",
+      "battery": "Baterai",
+      "sleep": "Tidur",
+      "reboot": "Mulai ulang",
+      "power_off": "Matikan",
+      "you_died": "Kamu mati!",
+      "death_reason": "Penyebab: terlalu banyak kata sandi salah",
+      "respawn": "Bangkit lagi"
+    },
+    "inventory": {
+      "title": "Inventaris",
+      "search_title": "Cari item",
+      "hotbar": "Akses cepat",
+      "hint": "Enter — jalankan · 1-9 — akses cepat · Esc — tutup"
+    },
+    "common": {
+      "search": "Cari...",
+      "nothing_found": "Tidak ada hasil"
+    },
+    "launcher": {
+      "apps": "Aplikasi"
+    }
   }
 }

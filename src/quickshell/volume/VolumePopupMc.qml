@@ -749,8 +749,8 @@ Item {
         bounceLevel: window.activeMute ? 0 : Math.min(1, window.activeVol / 100)
         sleeping: window.activeMute
         px: Math.max(3, Math.round(Scaler.s(3)))
-        phrases: ["Музичка!", "Ще гучніше!", "Бум-бум-бум", "Обожнюю цей трек", "Слайм пружинить!", "Ой!", "Гей!"]
-        onArrivedSignal: say(window.activeMute ? "Тихо тут..." : "Музичка!")
+        phrases: [I18n.t("minecraft.steve.music"), I18n.t("minecraft.steve.louder"), I18n.t("minecraft.steve.boom"), I18n.t("minecraft.steve.love_track"), I18n.t("minecraft.steve.slime_bounce"), I18n.t("minecraft.steve.ouch"), I18n.t("minecraft.steve.hey")]
+        onArrivedSignal: say(window.activeMute ? I18n.t("minecraft.steve.quiet_here") : I18n.t("minecraft.steve.music"))
 
         // React to volume changes once the slider settles.
         Timer {
@@ -759,8 +759,8 @@ Item {
             onTriggered: {
                 if (!volSteve.arrived || window.activeMute) return;
                 let v = window.activeVol;
-                if (v >= 95) volSteve.say("ГУЧНО!!");
-                else if (v <= 5) volSteve.say("тссс...");
+                if (v >= 95) volSteve.say(I18n.t("minecraft.steve.loud"));
+                else if (v <= 5) volSteve.say(I18n.t("minecraft.steve.shh"));
                 else volSteve.say(v + "%", 1000);
                 volSteve.hop();
             }
@@ -770,7 +770,7 @@ Item {
             function onActiveVolChanged() { volReact.restart(); }
             function onActiveMuteChanged() {
                 if (!volSteve.arrived) return;
-                volSteve.say(window.activeMute ? "Добраніч..." : "Я прокинувся!");
+                volSteve.say(window.activeMute ? I18n.t("minecraft.steve.good_night") : I18n.t("minecraft.steve.woke_up"));
             }
         }
     }

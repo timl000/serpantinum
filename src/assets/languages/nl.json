@@ -1546,5 +1546,97 @@
   },
   "datetime": {
     "full_date": "dddd, d MMMM"
+  },
+  "minecraft": {
+    "steve": {
+      "hi": "Hoi!",
+      "hi_name": "Hoi, {name}!",
+      "friend": "vriend",
+      "ouch": "Au!",
+      "dont_touch": "Niet aankomen!",
+      "want_diamonds": "Ik wil diamanten",
+      "where_pickaxe": "Waar is mijn houweel?",
+      "lets_craft": "Zullen we craften?",
+      "creeper_behind": "Creeper achter je!",
+      "hmm": "Hmmm...",
+      "hey": "Hé!",
+      "ow": "Auw!",
+      "careful": "Voorzichtig!",
+      "again": "Nog een keer!",
+      "wheee": "Joehoe!",
+      "hooray": "Hoera!",
+      "let_go": "Laat los!",
+      "five_more_minutes": "Mmm... nog 5 minuten",
+      "flip": "Salto!",
+      "nice_weather": "Mooi weer",
+      "settings_hi": "Zullen we instellen?",
+      "like_theme": "Ik vind dit thema leuk",
+      "click_tabs": "Klik op de tabbladen!",
+      "diamond_button": "Waar is de knop „diamanten”?",
+      "battery_home": "De batterij is mijn thuis",
+      "dont_turn_off": "Zet me niet uit!",
+      "what_now": "Wat gaan we doen?",
+      "charging": "Aan het laden ⚡",
+      "hungry": "Honger... {percent}%",
+      "music": "Muziek!",
+      "louder": "Harder!",
+      "boom": "Boem-boem-boem",
+      "love_track": "Ik hou van dit nummer",
+      "slime_bounce": "Het slijm veert!",
+      "quiet_here": "Stil hier...",
+      "loud": "HARD!!",
+      "shh": "sst...",
+      "good_night": "Welterusten...",
+      "woke_up": "Ik ben wakker!",
+      "come_back": "Kom snel terug!",
+      "guarding": "Ik bewaak deze pc",
+      "remember_password": "Weet je je wachtwoord nog?",
+      "bored": "Saai...",
+      "will_guard": "Ik hou de wacht, {name}!",
+      "welcome_back": "Welkom terug!",
+      "wrong_pw": "Au! Verkeerd wachtwoord",
+      "it_hurts": "Dat doet pijn!",
+      "try_again": "Probeer opnieuw"
+    },
+    "mob": {
+      "sheep": "Bèè!|Bèèèè|Mèè?",
+      "pig": "Knor!|Knor-knor|Knorr?",
+      "cow": "Boe!|Boeeh|Boe?",
+      "chicken": "Tok!|Tok-tok!|Piep",
+      "creeper": "Ssssss...|...|Sssss"
+    },
+    "lock": {
+      "player": "speler",
+      "splashes": "Hoi, {name}!|Spel gepauzeerd!|Creepers komen er niet door!|Steve houdt de wacht!|Vergeet je wachtwoord niet!|100% Arch!|Nu met Hyprland!|Gebouwd uit blokken!|AFK!|Diamanten aan het delven!|Ctrl+Alt+Del helpt niet!|Probeer ook Serpantinum!",
+      "paused": "Spel gepauzeerd",
+      "password_of": "Wachtwoord van {name}",
+      "start_typing": "begin met typen...",
+      "loading_world": "Wereld laden...",
+      "checking": "Wachtwoord controleren...",
+      "wrong": "Onjuist wachtwoord!",
+      "hint": "Enter — doorgaan, Esc — verbergen",
+      "press_any": "Druk op een toets",
+      "charging": "Opladen",
+      "battery": "Batterij",
+      "sleep": "Slaapstand",
+      "reboot": "Herstarten",
+      "power_off": "Afsluiten",
+      "you_died": "Je bent dood!",
+      "death_reason": "Oorzaak: te veel verkeerde wachtwoorden",
+      "respawn": "Respawnen"
+    },
+    "inventory": {
+      "title": "Inventaris",
+      "search_title": "Voorwerpen zoeken",
+      "hotbar": "Snelle toegang",
+      "hint": "Enter — starten · 1-9 — snelle toegang · Esc — sluiten"
+    },
+    "common": {
+      "search": "Zoeken...",
+      "nothing_found": "Niets gevonden"
+    },
+    "launcher": {
+      "apps": "Apps"
+    }
   }
 }
