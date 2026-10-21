@@ -5,6 +5,7 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
 import "../"
+import "../mc"
 
 Variants {
     model: Quickshell.screens
@@ -303,7 +304,13 @@ Variants {
 
             property int hoveredBars: 0
 
-            property var tabModules: [
+            // Minecraft style uses the *Mc.qml twins of each action.
+            property var tabModules: UiStyle.minecraft ? [
+                "actions/DrawActionMc.qml",
+                "actions/SystemUsageMc.qml",
+                "actions/TimerMc.qml",
+                "actions/NotesMc.qml"
+            ] : [
                 "actions/DrawAction.qml",
                 "actions/SystemUsage.qml",
                 "actions/Timer.qml",
@@ -311,6 +318,23 @@ Variants {
             ]
 
             property int tabCount: Math.max(1, tabModules.length)
+
+            // qs ipc call quickactions-<monitor> open <0 draw|1 system|2 timer|3 notes> [edge]
+            IpcHandler {
+                target: "quickactions-" + floatingWidget.modelData.name
+                function open(index: int, edge: string): void {
+                    let e = (edge === "left" || edge === "top" || edge === "bottom") ? edge : "right";
+                    floatingWidget.activeIndex = Math.max(0, Math.min(floatingWidget.tabCount - 1, index));
+                    floatingWidget.useGraceTimer = true;
+                    let pos = (e === "left" || e === "right") ? floatingWidget.height / 2 : floatingWidget.width / 2;
+                    floatingWidget.showSidebar(e, pos, true);
+                }
+                function close(): void {
+                    floatingWidget.isExpanded = false;
+                    floatingWidget.isSidebarVisible = false;
+                    floatingWidget.isPeekVisible = false;
+                }
+            }
 
             function getTabInfo(index) {
                 let mod = (index >= 0 && index < tabModules.length) ? tabModules[index] : "";
@@ -538,8 +562,8 @@ Variants {
                 }
             }
 
-            property real containerRadius: s(16)
-            property real outerCornerRadius: s(24)
+            property real containerRadius: UiStyle.minecraft ? 0 : s(16)
+            property real outerCornerRadius: UiStyle.minecraft ? 0 : s(24)
             property real edgeBleed: Math.max(2, Math.ceil(s(2)))
 
             property real h_in: Math.round(s(27))
@@ -1264,8 +1288,15 @@ Variants {
                         bottomLeftRadius: 0
                         topRightRadius: floatingWidget.containerRadius
                         bottomRightRadius: floatingWidget.containerRadius
-                        color: Qt.rgba(ThemeBackend.base.r, ThemeBackend.base.g, ThemeBackend.base.b, 1.0)
+                        color: UiStyle.minecraft ? "#1d1d1d" : Qt.rgba(ThemeBackend.base.r, ThemeBackend.base.g, ThemeBackend.base.b, 1.0)
                         border.width: 0
+
+                        McPanel {
+                            anchors.fill: parent
+                            visible: UiStyle.minecraft
+                            bevel: 2
+                            fill: "#1d1d1d"; light: "#4a4a4a"; dark: "#0a0a0a"
+                        }
 
                         MouseArea {
                             id: sidebarDragArea
@@ -1304,10 +1335,10 @@ Variants {
                         clip: true
 
                         component EmptyBlock : Rectangle {
-                            radius: Math.min(floatingWidget.s(10), Math.min(width, height) / 2)
-                            color: Qt.rgba(ThemeBackend.text.r, ThemeBackend.text.g, ThemeBackend.text.b, 0.05)
-                            border.width: 0
-                            border.color: Qt.rgba(ThemeBackend.text.r, ThemeBackend.text.g, ThemeBackend.text.b, 0.08)
+                            radius: UiStyle.minecraft ? 0 : Math.min(floatingWidget.s(10), Math.min(width, height) / 2)
+                            color: UiStyle.minecraft ? "#141414" : Qt.rgba(ThemeBackend.text.r, ThemeBackend.text.g, ThemeBackend.text.b, 0.05)
+                            border.width: UiStyle.minecraft ? 2 : 0
+                            border.color: UiStyle.minecraft ? "#000000" : Qt.rgba(ThemeBackend.text.r, ThemeBackend.text.g, ThemeBackend.text.b, 0.08)
                             clip: true
                         }
 
@@ -1540,7 +1571,7 @@ Variants {
                                     id: pinButton
                                     width: floatingWidget.buttonSize
                                     height: floatingWidget.buttonSize
-                                    radius: width / 2
+                                    radius: UiStyle.minecraft ? 0 : width / 2
                                     x: (parent.width - width) / 2
                                     y: floatingWidget.activeEdge === "left"
                                         ? expandButton.y + expandButton.height + floatingWidget.s(6)
@@ -1601,8 +1632,10 @@ Variants {
                                 x: 0
                                 width: parent.width
                                 z: 0
-                                radius: width / 2
-                                color: ThemeBackend.mauve
+                                radius: UiStyle.minecraft ? 0 : width / 2
+                                color: UiStyle.minecraft ? "#7c7c7c" : ThemeBackend.mauve
+                                border.width: UiStyle.minecraft ? 2 : 0
+                                border.color: "#ffffff"
 
                                 property int prevIdx: 0
                                 property int curIdx: floatingWidget.activeIndex
@@ -1636,7 +1669,7 @@ Variants {
 
                                     x: 0
                                     width: parent.width
-                                    radius: width / 2
+                                    radius: UiStyle.minecraft ? 0 : width / 2
                                     z: 1
 
                                     y: floatingWidget.barOffsetY + floatingWidget.getTargetY(index, floatingWidget.activeIndex)
@@ -1645,7 +1678,7 @@ Variants {
                                     height: isActive ? floatingWidget.h_ac : width
                                     Behavior on height { enabled: !floatingWidget.disableAnim; NumberAnimation { duration: 350; easing.type: Easing.OutExpo } }
 
-                                    color: isActive ? "transparent" : (isPressed ? Qt.rgba(ThemeBackend.mauve.r, ThemeBackend.mauve.g, ThemeBackend.mauve.b, 0.4) : (isHovered ? Qt.rgba(ThemeBackend.mauve.r, ThemeBackend.mauve.g, ThemeBackend.mauve.b, 0.25) : Qt.rgba(ThemeBackend.text.r, ThemeBackend.text.g, ThemeBackend.text.b, 0.15)))
+                                    color: UiStyle.minecraft ? (isActive ? "transparent" : (isPressed ? "#2e2e2e" : (isHovered ? "#5e5e5e" : "#3a3a3a"))) : isActive ? "transparent" : (isPressed ? Qt.rgba(ThemeBackend.mauve.r, ThemeBackend.mauve.g, ThemeBackend.mauve.b, 0.4) : (isHovered ? Qt.rgba(ThemeBackend.mauve.r, ThemeBackend.mauve.g, ThemeBackend.mauve.b, 0.25) : Qt.rgba(ThemeBackend.text.r, ThemeBackend.text.g, ThemeBackend.text.b, 0.15)))
                                     Behavior on color { ColorAnimation { duration: 250 } }
 
                                     scale: isActive ? 1.0 : (isPressed ? 0.95 : (isHovered ? 1.05 : 1.0))
