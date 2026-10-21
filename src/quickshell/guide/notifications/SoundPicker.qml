@@ -105,7 +105,7 @@ FilePicker {
                     }
 
                     IconButton {
-                        mcStyle: true
+                        mcStyle: UiStyle.minecraft
                         id: playSoundButton
                         Layout.alignment: Qt.AlignHCenter
                         Layout.preferredWidth: soundPickerRoot.s(44)

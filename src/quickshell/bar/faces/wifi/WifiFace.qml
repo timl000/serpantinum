@@ -356,7 +356,7 @@ Item {
         Text {
             visible: root.showName
             text: root.effectiveName
-            font.family: "Monocraft"
+            font.family: ThemeBackend.fontFamily
             font.pixelSize: s(root.isCompact ? 11 : 12)
             font.bold: true
             color: textMouseArea.containsMouse ? Qt.lighter(ThemeBackend.text, 1.15) : ThemeBackend.text
@@ -372,7 +372,7 @@ Item {
         property int pillHeight: s(root.isCompact ? 28 : 30)
 
         ClickButton {
-            mcStyle: true
+            mcStyle: UiStyle.minecraft
             mcActiveColor: "#55ff55"
             id: wifiPill
             property bool initAnimTrigger: root.showLayout

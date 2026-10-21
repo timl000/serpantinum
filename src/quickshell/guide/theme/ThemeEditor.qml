@@ -158,7 +158,7 @@ Popup {
             }
 
             IconButton {
-                mcStyle: true
+                mcStyle: UiStyle.minecraft
                 size: rootObj ? rootObj.s(30) : 30
                 cornerRadius: rootObj ? rootObj.s(8) : 8
                 buttonIcon: "󰅖"
@@ -194,7 +194,7 @@ Popup {
             }
 
             IconButton {
-                mcStyle: true
+                mcStyle: UiStyle.minecraft
                 size: rootObj ? rootObj.s(36) : 36
                 Layout.preferredWidth: rootObj ? rootObj.s(36) : 36
                 Layout.preferredHeight: rootObj ? rootObj.s(36) : 36

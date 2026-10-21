@@ -90,7 +90,7 @@ Popup {
                 Layout.fillWidth: true
             }
             IconButton {
-                mcStyle: true
+                mcStyle: UiStyle.minecraft
                 Layout.preferredWidth: locationInfoRoot.toolbarHeight
                 Layout.preferredHeight: locationInfoRoot.toolbarHeight
                 cornerRadius: locationInfoRoot.cr

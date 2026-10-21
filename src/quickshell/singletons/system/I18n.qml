@@ -14,6 +14,8 @@ Item {
         return Qt.resolvedUrl("../../../assets/languages").toString().replace(/^file:\/\//, "");
     }
     property string currentLang: systemLanguage()
+    // Qt locale for dates/numbers: our language codes are not all ISO ("ua" is Ukrainian = uk_UA).
+    readonly property string qtLocaleName: ({ "ua": "uk_UA", "zh_tw": "zh_TW", "zh": "zh_CN", "pt": "pt_BR" })[currentLang] || currentLang
     readonly property var rtlLanguages: ["ar", "fa", "ur", "he", "iw", "ps", "ug", "ckb", "yi"]
     readonly property bool rtl: rtlLanguages.indexOf(currentLang) !== -1
     readonly property bool isRtl: rtl

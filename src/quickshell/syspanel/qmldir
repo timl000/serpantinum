@@ -2,3 +2,7 @@ SystemPanel 1.0 SystemPanel.qml
 SystemPanelSliders 1.0 SystemPanelSliders.qml
 SystemPanelQuickActions 1.0 SystemPanelQuickActions.qml
 SystemPanelPowerActions 1.0 SystemPanelPowerActions.qml
+SystemPanelSlidersMc 1.0 SystemPanelSlidersMc.qml
+SystemPanelQuickActionsMc 1.0 SystemPanelQuickActionsMc.qml
+SystemPanelPowerActionsMc 1.0 SystemPanelPowerActionsMc.qml
+SystemPanelMc 1.0 SystemPanelMc.qml

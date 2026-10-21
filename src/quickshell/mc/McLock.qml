@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell
 import "."
+import "../"
 
 // Minecraft-style lock screen drawn over Serpantinum's own lock UI.
 // It only shows state: the real password field, PAM and focus stay in Lock.qml, so keys
@@ -153,7 +154,7 @@ Item {
         anchors.top: logo.bottom
         anchors.topMargin: root.px * 6
         text: {
-            let s = root.now.toLocaleDateString(Qt.locale("uk_UA"), "dddd, d MMMM");
+            let s = root.now.toLocaleDateString(Qt.locale(I18n.qtLocaleName), "dddd, d MMMM");
             return s.charAt(0).toUpperCase() + s.slice(1);
         }
         font.pixelSize: root.px * 6

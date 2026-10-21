@@ -38,7 +38,7 @@ Item {
         spacing: barWindow ? barWindow.s(root.isCompact ? 5 : 6) : (root.isCompact ? 5 : 6)
 
         IconButton {
-            mcStyle: true
+            mcStyle: UiStyle.minecraft
             id: focusIconButton
             width: barWindow ? barWindow.s(root.isCompact ? 28 : 30) : (root.isCompact ? 28 : 30)
             height: barWindow ? barWindow.s(root.isCompact ? 28 : 30) : (root.isCompact ? 28 : 30)
@@ -71,7 +71,7 @@ Item {
             Text {
                 id: titleTextMain
                 text: root.displayText
-                font.family: "Monocraft"
+                font.family: ThemeBackend.fontFamily
                 font.pixelSize: barWindow ? barWindow.s(root.isCompact ? 11 : 12) : (root.isCompact ? 11 : 12)
                 font.weight: Font.DemiBold
                 color: root.isCompact ? ThemeBackend.text : ThemeBackend.subtext1

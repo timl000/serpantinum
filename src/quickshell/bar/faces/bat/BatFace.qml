@@ -216,7 +216,7 @@ Item {
         Text {
             visible: !root.isDesktop && root.effectiveShowPercent
             text: root.batPercent
-            font.family: "Monocraft"
+            font.family: ThemeBackend.fontFamily
             font.pixelSize: s(root.isCompact ? 11 : 12.6)
             font.bold: true
             color: textMouseArea.containsMouse ? Qt.lighter(ThemeBackend.text, 1.15) : ThemeBackend.text
@@ -259,7 +259,7 @@ Item {
                 id: dummyPercentMetrics
                 visible: false
                 text: root.batPercent ? root.batPercent : "100%"
-                font.family: "Monocraft"
+                font.family: ThemeBackend.fontFamily
                 font.pixelSize: s(root.isCompact ? 11 : 12.6)
                 font.bold: true
             }
@@ -268,7 +268,7 @@ Item {
                 id: dummyIconMetrics
                 visible: false
                 text: (!root.isDesktop && root.batStyle === "minimal" && root.isCharging) ? "󱐋" : (root.batIcon ? root.batIcon : "󰁹")
-                font.family: "Monocraft"
+                font.family: ThemeBackend.fontFamily
                 font.pixelSize: root.isDesktop ? s(root.isCompact ? 15 : 16) : s(root.isCompact ? 12 : 13.5)
             }
 
@@ -282,18 +282,21 @@ Item {
             scale: batMouseArea.pressed ? 0.94 : (batMouseArea.containsMouse ? 1.04 : 1.0)
             Behavior on scale { NumberAnimation { duration: 150; easing.type: Easing.OutCubic } }
 
-            radius: 0
-            property color baseColor: "#3a3a3a"
-            color: batMouseArea.pressed ? "#2e2e2e" : (batMouseArea.containsMouse ? "#4a4a4a" : baseColor)
+            radius: UiStyle.minecraft ? 0 : Math.max(0, ThemeBackend.borderRadius - s(2))
+            property color baseColor: UiStyle.minecraft ? "#3a3a3a" : (root.isCompact ? Qt.lighter(ThemeBackend.surface0, 1.18) : ThemeBackend.surface0)
+            color: UiStyle.minecraft
+                ? (batMouseArea.pressed ? "#2e2e2e" : (batMouseArea.containsMouse ? "#4a4a4a" : baseColor))
+                : (batMouseArea.pressed ? Qt.darker(baseColor, 1.15) : (batMouseArea.containsMouse ? Qt.lighter(baseColor, 1.08) : baseColor))
             Behavior on color { ColorAnimation { duration: 150 } }
-            property color baseBorderColor: "#000000"
-            border.color: batMouseArea.containsMouse ? "#ffffff" : baseBorderColor
-            border.width: batMouseArea.containsMouse ? 2 : 1
+            property color baseBorderColor: UiStyle.minecraft ? "#000000" : (root.isCompact ? ThemeBackend.surface2 : ThemeBackend.surface1)
+            border.color: UiStyle.minecraft ? (batMouseArea.containsMouse ? "#ffffff" : baseBorderColor) : (batMouseArea.containsMouse ? ThemeBackend.surface2 : baseBorderColor)
+            Behavior on border.color { enabled: !UiStyle.minecraft; ColorAnimation { duration: 150 } }
+            border.width: UiStyle.minecraft && batMouseArea.containsMouse ? 2 : 1
             clip: true
 
             // Durability bar: green -> yellow -> red as the charge drops.
             Rectangle {
-                visible: !root.isDesktop
+                visible: UiStyle.minecraft && !root.isDesktop
                 x: batPill.border.width
                 y: batPill.border.width
                 height: parent.height - batPill.border.width * 2
@@ -320,7 +323,7 @@ Item {
             FluidWave {
                 id: pillWave
                 anchors.fill: parent
-                visible: false
+                visible: !UiStyle.minecraft && !root.isDesktop && batPill.fillRatio > 0.001
                 radius: batPill.radius
                 fillLevel: batPill.fillRatio
                 waveAmp: (batPill.fillRatio < 0.99 && batPill.waveAmp > 0) ? Math.min(batPill.waveAmp, Math.min(width * batPill.fillRatio, width * (1.0 - batPill.fillRatio))) : 0
@@ -339,7 +342,7 @@ Item {
                     id: batIconText
                     visible: root.effectiveShowIcon
                     text: (!root.isDesktop && root.batStyle === "minimal" && root.isCharging) ? "󱐋" : root.batIcon
-                    font.family: "Monocraft"
+                    font.family: ThemeBackend.fontFamily
                     font.pixelSize: root.isDesktop ? s(root.isCompact ? 15 : 16) : s(root.isCompact ? 12 : 13.5)
                     color: root.isDesktop ? ThemeBackend.red : (root.isCompact ? ThemeBackend.text : ThemeBackend.subtext0)
                     anchors.verticalCenter: parent.verticalCenter
@@ -349,7 +352,7 @@ Item {
                     id: batPercentText
                     visible: !root.isDesktop && root.effectiveShowPercent
                     text: root.batPercent
-                    font.family: "Monocraft"
+                    font.family: ThemeBackend.fontFamily
                     font.pixelSize: s(root.isCompact ? 11 : 12.6)
                     font.bold: true
                     color: ThemeBackend.text

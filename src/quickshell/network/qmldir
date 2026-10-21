@@ -3,3 +3,7 @@ NetworkCoreLayer 1.0 NetworkCoreLayer.qml
 NetworkCardLayer 1.0 NetworkCardLayer.qml
 NetworkControls 1.0 NetworkControls.qml
 LoadingDots 1.0 LoadingDots.qml
+NetworkCoreLayerMc 1.0 NetworkCoreLayerMc.qml
+NetworkCardLayerMc 1.0 NetworkCardLayerMc.qml
+NetworkControlsMc 1.0 NetworkControlsMc.qml
+NetworkPopupMc 1.0 NetworkPopupMc.qml

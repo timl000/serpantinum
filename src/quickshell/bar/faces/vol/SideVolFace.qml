@@ -153,7 +153,7 @@ Item {
             visible: root.showPercent
             anchors.horizontalCenter: parent.horizontalCenter
             text: root.volPercent
-            font.family: "Monocraft"
+            font.family: ThemeBackend.fontFamily
             font.pixelSize: s(root.isCompact ? 9 : 10)
             font.bold: true
             color: sideTextMouseArea.containsMouse ? Qt.lighter(ThemeBackend.text, 1.15) : ThemeBackend.text
@@ -162,7 +162,7 @@ Item {
     }
 
     IconButton {
-        mcStyle: true
+        mcStyle: UiStyle.minecraft
         id: volBtn
         visible: root.volStyle !== "text"
         anchors.centerIn: parent

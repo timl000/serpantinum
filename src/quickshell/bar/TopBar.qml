@@ -531,7 +531,7 @@ Item {
         height: barWindow ? barWindow.barHeight : 0
         y: barWindow ? barWindow.baseOffsetY : 0
         color: Qt.alpha(ThemeBackend.base, (barWindow && barWindow.barOpacity !== undefined) ? barWindow.barOpacity : 1.0)
-        radius: 0
+        radius: isFill ? 0 : ThemeBackend.borderRadius
         border.width: (isSolid || isFill) ? 0 : 1
         border.color: (isSolid || isFill) ? "transparent" : Qt.alpha(ThemeBackend.surface0, (barWindow && barWindow.barOpacity !== undefined) ? barWindow.barOpacity : 1.0)
         visible: (isSolid || isFill) && (barWindow ? !barWindow.positionChanging : true)
@@ -638,12 +638,15 @@ Item {
             visible: metrics.v && (barWindow ? !barWindow.positionChanging : true) && width > 0 && (!contentWrapper.isSolid || contentWrapper.distinctPills)
             opacity: visible ? 1.0 : 0.0
 
-            color: "transparent"
-            radius: 0
+            color: UiStyle.minecraft ? "transparent" : ((contentWrapper.isSolid && contentWrapper.distinctPills)
+                ? Qt.alpha(Qt.darker(ThemeBackend.surface0, 1.15), (barWindow && barWindow.barOpacity !== undefined) ? barWindow.barOpacity : 1.0)
+                : Qt.alpha(ThemeBackend.base, (barWindow && barWindow.barOpacity !== undefined) ? barWindow.barOpacity : 1.0))
+            radius: ThemeBackend.borderRadius
             border.width: 0
 
             McPanel {
                 anchors.fill: parent
+                visible: UiStyle.minecraft
                 opacity: (barWindow && barWindow.barOpacity !== undefined) ? barWindow.barOpacity : 1.0
                 bevel: 2
                 fill: "#1d1d1d"

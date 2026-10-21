@@ -9,7 +9,6 @@ import Quickshell.Bluetooth
 import Quickshell.Networking
 import "../"
 import "../reusables"
-import "../mc"
 
 Item {
     required property var window
@@ -214,16 +213,9 @@ Item {
             property bool isMyActionable: typeof isActionable !== "undefined" ? isActionable : true
 
             property color dynamicTextColor: {
-                if (isFailed) return "#ff5555";
-                if (isHighlighted) return "#ffff55";
-                return "#e6e6e6";
-            }
-
-            // Wi-Fi strength is encoded in the nerd-font icon; turn it into Minecraft server-list ping bars.
-            readonly property int pingBars: {
-                if (window.activeMode !== "wifi") return -1;
-                let m = { "󰤨": 5, "󰤪": 5, "󰤥": 4, "󰤧": 4, "󰤢": 3, "󰤤": 3, "󰤟": 2, "󰤡": 2, "󰤯": 1, "󰤬": 1 };
-                return m[myButtonIcon] !== undefined ? m[myButtonIcon] : -1;
+                if (isFailed) return ThemeBackend.red;
+                if (isHighlighted) return window.activeColor;
+                return ThemeBackend.text;
             }
 
             function handleTrigger() {
@@ -295,15 +287,15 @@ Item {
                 visible: isMyActionable
                 enabled: !isMyBusy && !window.isBtOpBusy(itemId)
                 anchors.fill: parent
-                cornerRadius: 0
+                cornerRadius: ThemeBackend.borderRadius
                 fillDuration: 600
                 buttonText: ""
                 buttonIcon: ""
-                accentColor: "#2f8f2f"
-                baseColor: "#3c3c3c"
-                hoverColor: "#4e4e4e"
+                accentColor: window.activeColor
+                baseColor: ThemeBackend.base
+                hoverColor: ThemeBackend.surface0
                 textColor: dynamicTextColor
-                filledTextColor: "#ffffff"
+                filledTextColor: ThemeBackend.crust
                 action_highlight: isHighlighted
                 contentAlignment: Qt.AlignLeft
                 horizontalPadding: window.s(10)
@@ -313,30 +305,12 @@ Item {
                 onTriggered: floatCardDelegateContainer.handleTrigger()
             }
 
-            // Stone bevel over the fill button, white frame on hover.
-            Item {
-                anchors.fill: parent
-                visible: isMyActionable
-                readonly property int b: 2
-                Rectangle { x: 0; y: 0; width: parent.width; height: parent.b; color: Qt.rgba(1, 1, 1, 0.28) }
-                Rectangle { x: 0; y: 0; width: parent.b; height: parent.height; color: Qt.rgba(1, 1, 1, 0.28) }
-                Rectangle { x: 0; y: parent.height - parent.b; width: parent.width; height: parent.b; color: Qt.rgba(0, 0, 0, 0.45) }
-                Rectangle { x: parent.width - parent.b; y: 0; width: parent.b; height: parent.height; color: Qt.rgba(0, 0, 0, 0.45) }
-                Rectangle {
-                    anchors.fill: parent
-                    color: "transparent"
-                    border.width: floatCardDelegateContainer.isHoveredOrHighlighted ? 2 : 1
-                    border.color: floatCardDelegateContainer.isHoveredOrHighlighted ? "#ffffff" : "#000000"
-                }
-            }
-
             ClickButton {
                 id: clickBtn
-                mcStyle: true
                 visible: !isMyActionable
                 enabled: !isMyBusy && !window.isBtOpBusy(itemId)
                 anchors.fill: parent
-                cornerRadius: 0
+                cornerRadius: ThemeBackend.borderRadius
                 accentColor: ThemeBackend.surface0
                 textColor: dynamicTextColor
                 action_highlight: isHighlighted
@@ -361,27 +335,9 @@ Item {
                         spacing: window.s(6)
                         height: parent.height
 
-                        Row {
-                            id: pingRow
-                            visible: floatCardDelegateContainer.pingBars > 0
-                            anchors.verticalCenter: parent.verticalCenter
-                            spacing: 1
-                            Repeater {
-                                model: 5
-                                Rectangle {
-                                    anchors.bottom: parent.bottom
-                                    width: Math.max(2, Math.round(window.s(3)))
-                                    height: Math.round(window.s(4) + index * window.s(2.5))
-                                    color: index < floatCardDelegateContainer.pingBars ? "#55ff55" : "#2a2a2a"
-                                    border.width: 1
-                                    border.color: index < floatCardDelegateContainer.pingBars ? "#1f7f1f" : "#151515"
-                                }
-                            }
-                        }
-
                         Text {
                             id: overlayIcon
-                            visible: myButtonIcon !== "" && floatCardDelegateContainer.pingBars <= 0
+                            visible: myButtonIcon !== ""
                             text: myButtonIcon
                             font.family: "Iosevka Nerd Font"
                             font.pixelSize: window.s(18)
@@ -392,10 +348,10 @@ Item {
 
                         MarqueeText {
                             id: marqueeClip
-                            width: floatCardDelegateContainer.width - window.s(20) - (overlayIcon.visible ? overlayIcon.implicitWidth + window.s(6) : 0) - (pingRow.visible ? pingRow.implicitWidth + window.s(6) : 0)
+                            width: floatCardDelegateContainer.width - window.s(20) - (overlayIcon.visible ? overlayIcon.implicitWidth + window.s(6) : 0)
                             height: parent.height
                             text: myButtonText
-                            font.family: "Monocraft"
+                            font.family: ThemeBackend.fontFamily
                             font.weight: Font.Bold
                             font.pixelSize: window.s(12)
                             color: dynamicTextColor
@@ -432,18 +388,12 @@ Item {
                                 spacing: window.s(6)
                                 height: parent.height
 
-                                Item {
-                                    visible: pingRow.visible
-                                    width: pingRow.implicitWidth
-                                    height: 1
-                                }
-
                                 Text {
-                                    visible: myButtonIcon !== "" && floatCardDelegateContainer.pingBars <= 0
+                                    visible: myButtonIcon !== ""
                                     text: myButtonIcon
                                     font.family: "Iosevka Nerd Font"
                                     font.pixelSize: window.s(18)
-                                    color: "#ffffff"
+                                    color: ThemeBackend.crust
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
 
@@ -463,18 +413,18 @@ Item {
 
                                             Text {
                                                 text: myButtonText
-                                                font.family: "Monocraft"
+                                                font.family: ThemeBackend.fontFamily
                                                 font.weight: Font.Bold
                                                 font.pixelSize: window.s(12)
-                                                color: "#ffffff"
+                                                color: ThemeBackend.crust
                                             }
 
                                             Text {
                                                 text: myButtonText
-                                                font.family: "Monocraft"
+                                                font.family: ThemeBackend.fontFamily
                                                 font.weight: Font.Bold
                                                 font.pixelSize: window.s(12)
-                                                color: "#ffffff"
+                                                color: ThemeBackend.crust
                                                 visible: marqueeClip.canMarquee
                                             }
                                         }

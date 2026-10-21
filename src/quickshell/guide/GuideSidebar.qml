@@ -136,7 +136,7 @@ Rectangle {
                 }
 
                 IconButton {
-                    mcStyle: true
+                    mcStyle: UiStyle.minecraft
                     id: closeSearchBtn
                     anchors.right: parent.right
                     anchors.rightMargin: popup.s(4)
@@ -158,7 +158,7 @@ Rectangle {
                 }
 
                 IconButton {
-                    mcStyle: true
+                    mcStyle: UiStyle.minecraft
                     id: searchBtn
                     anchors.left: parent.left
                     anchors.top: parent.top
@@ -313,7 +313,7 @@ Rectangle {
                                     Behavior on anchors.rightMargin { NumberAnimation { duration: 400; easing.type: Easing.OutQuint } }
 
                                     IconButton {
-                                        mcStyle: true
+                                        mcStyle: UiStyle.minecraft
                                         enabled: false
                                         size: popup.s(32)
                                         Layout.preferredWidth: popup.s(32)
@@ -453,7 +453,7 @@ Rectangle {
                                                     Behavior on anchors.rightMargin { NumberAnimation { duration: 300; easing.type: Easing.OutQuint } }
 
                                                     IconButton {
-                                                        mcStyle: true
+                                                        mcStyle: UiStyle.minecraft
                                                         enabled: false
                                                         size: popup.s(26)
                                                         Layout.preferredWidth: popup.s(26)
@@ -504,7 +504,7 @@ Rectangle {
         }
 
         ClickButton {
-            mcStyle: true
+            mcStyle: UiStyle.minecraft
             visible: Updater.updateAvailable && !popup.searchActive
             Layout.fillWidth: true
             implicitHeight: popup.s(38)

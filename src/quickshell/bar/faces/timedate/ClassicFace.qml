@@ -14,18 +14,18 @@ Item {
         id: timeCol
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
-        spacing: 1
+        spacing: UiStyle.minecraft ? 1 : -2
 
         Text {
             id: timeText
             anchors.left: parent.left
             text: widget ? widget.timeStr : (typeof DateTime !== "undefined" ? DateTime.time : "12:00")
-            font.family: "Monocraft"
+            font.family: ThemeBackend.fontFamily
             font.pixelSize: widget ? widget.s(widget.isCompact ? 14 : 15) : 15
             font.weight: Font.Black
             // Monocraft has tall line metrics; pin the line box to the glyphs so the rows don't overlap.
-            lineHeightMode: Text.FixedHeight
-            lineHeight: font.pixelSize + 1
+            lineHeightMode: UiStyle.minecraft ? Text.FixedHeight : Text.ProportionalHeight
+            lineHeight: UiStyle.minecraft ? font.pixelSize + 1 : 1.0
             color: (widget && widget.isCompact) ? Qt.lighter(ThemeBackend.blue, 1.1) : ThemeBackend.blue
         }
 
@@ -34,11 +34,11 @@ Item {
             visible: widget ? widget.showDate : true
             anchors.left: parent.left
             text: widget ? widget.dateStr : (typeof DateTime !== "undefined" ? DateTime.fullDate : "Mon, Jan 1")
-            font.family: "Monocraft"
+            font.family: ThemeBackend.fontFamily
             font.pixelSize: widget ? widget.s(widget.isCompact ? 9 : 10) : 10
             font.weight: Font.Bold
-            lineHeightMode: Text.FixedHeight
-            lineHeight: font.pixelSize + 1
+            lineHeightMode: UiStyle.minecraft ? Text.FixedHeight : Text.ProportionalHeight
+            lineHeight: UiStyle.minecraft ? font.pixelSize + 1 : 1.0
             color: (widget && widget.isCompact) ? Qt.lighter(ThemeBackend.subtext0, 1.08) : ThemeBackend.subtext0
         }
     }

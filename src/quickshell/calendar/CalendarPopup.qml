@@ -7,7 +7,6 @@ import Quickshell.Io
 import QtQuick.Window
 import "../"
 import "../reusables"
-import "../mc"
 
 Item {
     id: window
@@ -81,29 +80,23 @@ Item {
 
     readonly property string scriptsDir: Caching.qsDir + "/calendar"
 
-    readonly property color timeColor: "#ffffff"
-
-    readonly property color timeAccent: "#bdbdbd"
-
-    readonly property color textAccent: "#d8d8d8"
-
-    // Minecraft chat color codes by temperature: aqua, green, yellow, gold, red.
-    function tempColor(t) {
-        t = Number(t);
-        if (isNaN(t)) return "#ffffff";
-        if (t < 0) return "#55ffff";
-        if (t < 12) return "#55ff55";
-        if (t < 22) return "#ffff55";
-        if (t < 28) return "#ffaa00";
-        return "#ff5555";
+    readonly property color timeColor: {
+        let h = window.currentTime.getHours();
+        if (h >= 5 && h < 12) return window.peach;
+        if (h >= 12 && h < 17) return window.sapphire;
+        if (h >= 17 && h < 21) return window.mauve;
+        return window.blue;
     }
 
-    readonly property bool isRaining: {
-        let f = window.weatherData && window.weatherData.forecast ? window.weatherData.forecast[window.weatherView] : null;
-        if (!f) return false;
-        let d = String(f.desc || "").toLowerCase();
-        return Number(f.pop) >= 60 || /дощ|злив|rain|shower|drizzle|гроз|thunder/.test(d);
+    readonly property color timeAccent: {
+        let h = window.currentTime.getHours();
+        if (h >= 5 && h < 12) return window.yellow;
+        if (h >= 12 && h < 17) return window.teal;
+        if (h >= 17 && h < 21) return window.pink;
+        return window.mauve;
     }
+
+    readonly property color textAccent: Qt.tint(window.timeAccent, Qt.alpha(window.text, 0.35))
 
     property bool startupComplete: false
     property real introMain: 0
@@ -258,7 +251,12 @@ Item {
 
     property var weatherData: Weather.data
     property int weatherView: 0
-    property color activeWeatherHex: "#ffffff"
+    property color activeWeatherHex: {
+        if (!window.weatherData) return window.mauve;
+        if (window.weatherView === 0 && window.weatherData.current_hex) return window.weatherData.current_hex;
+        if (window.weatherData.forecast && window.weatherData.forecast[window.weatherView]) return window.weatherData.forecast[window.weatherView].hex;
+        return window.mauve;
+    }
 
     property int targetWeatherView: 0
     property real weatherContentOpacity: 1.0
@@ -292,7 +290,9 @@ Item {
     property bool isTempAnimating: tempAnim.running
     property color tempGlowColor: {
         if (!isTempAnimating || !window.startupComplete) return window.text;
-        return "#ffffff";
+        if (window.targetTemp > window.displayedTemp) return window.red;
+        if (window.targetTemp < window.displayedTemp) return window.blue;
+        return window.text;
     }
 
     SequentialAnimation {
@@ -414,7 +414,10 @@ Item {
         let isRealCurrentMonth = (actualToday.getMonth() === targetMonth && actualToday.getFullYear() === targetYear);
         let todayDate = actualToday.getDate();
 
-        window.targetMonthName = d.toLocaleDateString(Qt.locale(I18n.currentLang), "MMMM yyyy");
+        let monthLoc = Qt.locale(I18n.qtLocaleName);
+        // standalone (nominative) month name: "Жовтень 2026", not "жовтня 2026"
+        let monthName = monthLoc.standaloneMonthName(d.getMonth(), Locale.LongFormat);
+        window.targetMonthName = monthName.charAt(0).toUpperCase() + monthName.slice(1) + " " + d.getFullYear();
 
         let firstDay = new Date(targetYear, targetMonth, 1).getDay();
         firstDay = (firstDay === 0) ? 6 : firstDay - 1;
@@ -455,26 +458,85 @@ Item {
 
         Rectangle {
             anchors.fill: parent
-            radius: 0
-            color: "#151515"
+            radius: ThemeBackend.borderRadius
+            color: window.base
+            border.color: window.surface0
+            border.width: 1
             clip: true
 
-            McPanel {
-                anchors.fill: parent
-                bevel: Math.max(2, Math.round(window.s(3)))
-                fill: "#151515"
-                light: "#3a3a3a"
-                dark: "#070707"
+            Rectangle {
+                width: parent.width * 0.5; height: width; radius: width / 2
+                x: parent.width * 0.75 - width / 2
+                y: parent.height * 0.3 - height / 2
+                opacity: 0.012 * window.introAmbient
+                color: window.activeWeatherHex
+                Behavior on color { ColorAnimation { duration: 1000 } }
+
+                transform: Translate {
+                    SequentialAnimation on x {
+                        loops: Animation.Infinite
+                        running: window.visible
+                        NumberAnimation { from: window.s(350); to: -window.s(350); duration: 30000; easing.type: Easing.InOutSine }
+                        NumberAnimation { from: -window.s(350); to: window.s(350); duration: 30000; easing.type: Easing.InOutSine }
+                    }
+                    SequentialAnimation on y {
+                        loops: Animation.Infinite
+                        running: window.visible
+                        NumberAnimation { from: 0; to: window.s(200); duration: 15000; easing.type: Easing.OutSine }
+                        NumberAnimation { from: window.s(200); to: -window.s(200); duration: 30000; easing.type: Easing.InOutSine }
+                        NumberAnimation { from: -window.s(200); to: 0; duration: 15000; easing.type: Easing.InSine }
+                    }
+                }
             }
 
-            McSky {
-                anchors.fill: parent
-                anchors.margins: Math.max(2, Math.round(window.s(3))) + 1
-                px: Math.max(2, Math.round(window.s(3)))
-                hour: window.currentTime.getHours() + window.currentTime.getMinutes() / 60
-                raining: window.isRaining
-                active: window.visible
-                opacity: window.introAmbient
+            Rectangle {
+                width: parent.width * 0.6; height: width; radius: width / 2
+                x: parent.width * 0.25 - width / 2
+                y: parent.height * 0.7 - height / 2
+                opacity: 0.01 * window.introAmbient
+                color: window.timeColor
+                Behavior on color { ColorAnimation { duration: 1000 } }
+
+                transform: Translate {
+                    SequentialAnimation on x {
+                        loops: Animation.Infinite
+                        running: window.visible
+                        NumberAnimation { from: 0; to: -window.s(300); duration: 18750; easing.type: Easing.OutSine }
+                        NumberAnimation { from: -window.s(300); to: window.s(300); duration: 37500; easing.type: Easing.InOutSine }
+                        NumberAnimation { from: window.s(300); to: 0; duration: 18750; easing.type: Easing.InSine }
+                    }
+                    SequentialAnimation on y {
+                        loops: Animation.Infinite
+                        running: window.visible
+                        NumberAnimation { from: -window.s(250); to: window.s(250); duration: 37500; easing.type: Easing.InOutSine }
+                        NumberAnimation { from: window.s(250); to: -window.s(250); duration: 37500; easing.type: Easing.InOutSine }
+                    }
+                }
+            }
+
+            Rectangle {
+                width: parent.width * 0.45; height: width; radius: width / 2
+                x: parent.width * 0.5 - width / 2
+                y: parent.height * 0.5 - height / 2
+                opacity: 0.007 * window.introAmbient
+                color: window.timeAccent
+                Behavior on color { ColorAnimation { duration: 1000 } }
+
+                transform: Translate {
+                    SequentialAnimation on x {
+                        loops: Animation.Infinite
+                        running: window.visible
+                        NumberAnimation { from: window.s(400); to: -window.s(400); duration: 25000; easing.type: Easing.InOutSine }
+                        NumberAnimation { from: -window.s(400); to: window.s(400); duration: 25000; easing.type: Easing.InOutSine }
+                    }
+                    SequentialAnimation on y {
+                        loops: Animation.Infinite
+                        running: window.visible
+                        NumberAnimation { from: 0; to: -window.s(350); duration: 12500; easing.type: Easing.OutSine }
+                        NumberAnimation { from: -window.s(350); to: window.s(350); duration: 25000; easing.type: Easing.InOutSine }
+                        NumberAnimation { from: window.s(350); to: 0; duration: 12500; easing.type: Easing.InSine }
+                    }
+                }
             }
 
             Item {
@@ -599,10 +661,11 @@ Item {
                     z: 0
                     scale: 0.98 + (0.02 * window.secondPulse)
 
-                    McText {
+                    Text {
                         Layout.alignment: Qt.AlignHCenter
                         text: DateTime.time
-                        font.weight: Font.Bold
+                        font.family: ThemeBackend.fontFamily
+                        font.weight: Font.Black
                         font.pixelSize: {
                             let baseSize = window.s(84);
                             let len = (DateTime.time || "").length;
@@ -610,15 +673,18 @@ Item {
                             let scaleFactor = Math.min(1.0, Math.pow(5 / len, 0.7));
                             return Math.round(Math.max(window.s(36), baseSize * scaleFactor));
                         }
-                        color: "#ffffff"
+                        color: window.text
+                        style: Text.Outline
+                        styleColor: Qt.alpha(window.crust, 0.4)
                     }
 
-                    McText {
+                    Text {
                         Layout.alignment: Qt.AlignHCenter
-                        Layout.topMargin: window.s(6)
                         text: DateTime.fullDate
+                        font.family: ThemeBackend.fontFamily
+                        font.weight: Font.Bold
                         font.pixelSize: window.s(16)
-                        color: "#a8a8a8"
+                        color: window.subtext0
                         opacity: 0.9
                     }
                 }
@@ -664,29 +730,28 @@ Item {
                             width: window.s(52)
                             height: window.s(86)
 
-                            McPanel {
+                            Rectangle {
                                 anchors.fill: parent
-                                inset: true
-                                fill: isHighlighted ? "#4a4a4a" : (hrMa.containsMouse ? "#3a3a3a" : "#262626")
+                                radius: Math.min(window.s(26), ThemeBackend.borderRadius * 1.75)
+                                color: isHighlighted ? window.textAccent : (hrMa.containsMouse ? Qt.lighter(window.surface0, 1.12) : window.surface0)
+                                border.color: isHighlighted ? Qt.lighter(window.textAccent, 1.1) : (hrMa.containsMouse ? Qt.alpha(window.surface2, 0.9) : Qt.alpha(window.surface1, 0.6))
+                                border.width: 1
 
-                                Rectangle {
-                                    anchors.fill: parent
-                                    anchors.margins: -window.s(3)
-                                    visible: isHighlighted
-                                    color: "transparent"
-                                    border.width: Math.max(2, Math.round(window.s(3)))
-                                    border.color: "#ffffff"
-                                }
+                                Behavior on color { ColorAnimation { duration: 180 } }
+                                Behavior on border.color { ColorAnimation { duration: 180 } }
 
                                 ColumnLayout {
                                     anchors.centerIn: parent
                                     spacing: window.s(3)
 
-                                    McText {
+                                    Text {
                                         Layout.alignment: Qt.AlignHCenter
                                         text: modelData ? modelData.time : ""
-                                        font.pixelSize: window.s(10.5)
-                                        color: isHighlighted || hrMa.containsMouse ? "#ffffff" : "#9a9a9a"
+                                        font.family: ThemeBackend.fontFamily
+                                        font.weight: Font.Bold
+                                        font.pixelSize: window.s(11.5)
+                                        color: isHighlighted ? window.base : (hrMa.containsMouse ? window.text : window.overlay1)
+                                        Behavior on color { ColorAnimation { duration: 180 } }
                                     }
 
                                     Text {
@@ -694,15 +759,16 @@ Item {
                                         text: modelData ? (modelData.icon || (window.weatherData && window.weatherData.forecast[window.weatherView] ? window.weatherData.forecast[window.weatherView].icon : "")) : ""
                                         font.family: ThemeBackend.fontFamily
                                         font.pixelSize: window.s(16.5)
-                                        color: modelData && modelData.hex ? modelData.hex : "#ffffff"
+                                        color: isHighlighted ? window.base : (modelData ? (modelData.hex || window.text) : window.text)
                                     }
 
-                                    McText {
+                                    Text {
                                         Layout.alignment: Qt.AlignHCenter
                                         text: modelData ? (modelData.temp + "°") : ""
-                                        font.weight: Font.Bold
-                                        font.pixelSize: window.s(12)
-                                        color: modelData ? window.tempColor(modelData.temp) : "#ffffff"
+                                        font.family: ThemeBackend.fontFamily
+                                        font.weight: Font.Black
+                                        font.pixelSize: window.s(12.5)
+                                        color: isHighlighted ? window.base : window.text
                                     }
                                 }
                             }
@@ -712,24 +778,6 @@ Item {
                 }
             }
 
-            SteveStage {
-                z: 6
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: Math.max(2, Math.round(window.s(3))) + 1
-                anchors.left: calendarRect.right
-                anchors.leftMargin: window.s(24)
-                anchors.right: weatherContainer.left
-                anchors.rightMargin: window.s(24)
-                height: implicitHeight
-                px: Math.max(3, Math.round(window.s(3)))
-                showJukebox: false
-                showBed: true
-                elytraArrival: true
-                sleeping: window.currentTime.getHours() >= 22 || window.currentTime.getHours() < 6
-                active: window.visible
-                opacity: window.introAmbient
-            }
-
             Rectangle {
                 id: calendarRect
                 anchors.left: parent.left
@@ -737,16 +785,11 @@ Item {
                 anchors.leftMargin: window.s(40)
                 width: window.s(310)
                 height: window.s(350)
-                color: "transparent"
+                color: Qt.alpha(window.surface0, 0.2)
+                radius: ThemeBackend.borderRadius
+                border.color: Qt.alpha(window.surface1, 0.4)
+                border.width: 1
                 z: 10
-
-                McPanel {
-                    anchors.fill: parent
-                    bevel: Math.max(2, Math.round(window.s(3)))
-                    fill: "#1f1f1f"
-                    light: "#484848"
-                    dark: "#0a0a0a"
-                }
 
                 opacity: introCalendar
                 transform: Translate { x: -window.s(40) * (1.0 - introCalendar) }
@@ -766,47 +809,57 @@ Item {
                         Layout.bottomMargin: window.s(14)
                         layoutDirection: I18n.layoutDirection
 
-                        McButton {
+                        IconButton {
                             Layout.preferredWidth: window.s(28)
                             Layout.preferredHeight: window.s(28)
-                            bevel: Math.max(1, Math.round(window.s(2)))
-                            fontSize: window.s(14)
-                            icon: "󰃭"
+                            size: window.s(28)
+                            cornerRadius: window.s(8)
+                            buttonIcon: "󰃭"
+                            iconFontSize: window.s(14)
+                            accentColor: window.surface0
+                            textColor: window.text
                             opacity: window.targetMonthOffset !== 0 ? 1.0 : 0.0
                             visible: opacity > 0
                             Behavior on opacity { NumberAnimation { duration: 200 } }
                             onClicked: { if (window.targetMonthOffset !== 0) window.setMonthOffset(0) }
                         }
 
-                        McButton {
+                        IconButton {
                             Layout.preferredWidth: window.s(28)
                             Layout.preferredHeight: window.s(28)
-                            bevel: Math.max(1, Math.round(window.s(2)))
-                            fontSize: window.s(14)
-                            label: I18n.rtl ? ">" : "<"
+                            size: window.s(28)
+                            cornerRadius: window.s(8)
+                            buttonIcon: I18n.rtl ? "" : ""
+                            iconFontSize: window.s(14)
+                            accentColor: window.surface0
+                            textColor: window.text
                             onClicked: window.setMonthOffset(window.targetMonthOffset - 1)
                         }
 
-                        McText {
+                        Text {
                             Layout.fillWidth: true
                             text: window.targetMonthName.toUpperCase()
-                            font.weight: Font.Bold
-                            color: "#ffff55"
+                            font.family: ThemeBackend.fontFamily
+                            font.weight: Font.Black
                             font.pixelSize: window.s(14)
                             fontSizeMode: Text.Fit
                             minimumPixelSize: window.s(8)
+                            color: window.text
                             horizontalAlignment: Text.AlignHCenter
 
                             opacity: window.calendarContentOpacity
                             transform: Translate { x: window.calendarContentOffset }
                         }
 
-                        McButton {
+                        IconButton {
                             Layout.preferredWidth: window.s(28)
                             Layout.preferredHeight: window.s(28)
-                            bevel: Math.max(1, Math.round(window.s(2)))
-                            fontSize: window.s(14)
-                            label: I18n.rtl ? "<" : ">"
+                            size: window.s(28)
+                            cornerRadius: window.s(8)
+                            buttonIcon: I18n.rtl ? "" : ""
+                            iconFontSize: window.s(14)
+                            accentColor: window.surface0
+                            textColor: window.text
                             onClicked: window.setMonthOffset(window.targetMonthOffset + 1)
                         }
                     }
@@ -818,11 +871,13 @@ Item {
 
                         Repeater {
                             model: [I18n.t("calendar.days.mo"), I18n.t("calendar.days.tu"), I18n.t("calendar.days.we"), I18n.t("calendar.days.th"), I18n.t("calendar.days.fr"), I18n.t("calendar.days.sa"), I18n.t("calendar.days.su")]
-                            McText {
+                            Text {
                                 Layout.fillWidth: true
                                 text: modelData
-                                font.pixelSize: window.s(11)
-                                color: index >= 5 ? "#ff5555" : "#aaaaaa"
+                                font.family: ThemeBackend.fontFamily
+                                font.weight: Font.Black
+                                font.pixelSize: window.s(11.5)
+                                color: window.overlay0
                                 horizontalAlignment: Text.AlignHCenter
                             }
                         }
@@ -832,7 +887,7 @@ Item {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         columns: 7
-                        rowSpacing: window.s(3)
+                        rowSpacing: window.s(2)
                         columnSpacing: window.s(3)
                         layoutDirection: I18n.layoutDirection
 
@@ -841,32 +896,16 @@ Item {
 
                         Repeater {
                             model: calendarModel
-                            Item {
+                            ClickButton {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
-
-                                McPanel {
-                                    anchors.fill: parent
-                                    inset: true
-                                    outline: false
-                                    bevel: Math.max(1, Math.round(window.s(2)))
-                                    fill: isToday ? "#4a4a4a" : (isCurrentMonth ? "#2a2a2a" : "#1c1c1c")
-                                    light: "#101010"
-                                    dark: isCurrentMonth ? "#4a4a4a" : "#2c2c2c"
-                                }
-                                Rectangle {
-                                    anchors.fill: parent
-                                    visible: isToday
-                                    color: "transparent"
-                                    border.width: Math.max(2, Math.round(window.s(2)))
-                                    border.color: "#ffffff"
-                                }
-                                McText {
-                                    anchors.centerIn: parent
-                                    text: dayNum
-                                    font.pixelSize: window.s(11.5)
-                                    color: isToday ? "#ffff55" : (!isCurrentMonth ? "#4a4a4a" : (index % 7 >= 5 ? "#ff7070" : "#e0e0e0"))
-                                }
+                                enabled: false
+                                buttonText: dayNum
+                                textFontSize: window.s(11.5)
+                                cornerRadius: window.s(5)
+                                horizontalPadding: 0
+                                accentColor: isToday ? window.textAccent : "transparent"
+                                textColor: isToday ? window.base : (isCurrentMonth ? window.text : window.surface0)
                             }
                         }
                     }
@@ -895,32 +934,39 @@ Item {
                         spacing: window.s(14)
                         layoutDirection: I18n.layoutDirection
 
-                        McButton {
+                        IconButton {
                             Layout.preferredWidth: window.s(28)
                             Layout.preferredHeight: window.s(28)
-                            bevel: Math.max(1, Math.round(window.s(2)))
-                            fontSize: window.s(14)
-                            label: I18n.rtl ? ">" : "<"
+                            size: window.s(28)
+                            cornerRadius: window.s(8)
+                            buttonIcon: I18n.rtl ? "" : ""
+                            iconFontSize: window.s(12)
+                            accentColor: window.surface0
+                            textColor: isHoveredOrHighlighted ? window.textAccent : window.overlay1
                             onClicked: window.setWeatherView(window.targetWeatherView - 1)
                         }
 
-                        McText {
+                        Text {
                             Layout.fillWidth: true
                             horizontalAlignment: Text.AlignHCenter
                             text: window.weatherData && window.weatherData.forecast[window.weatherView] ? window.weatherData.forecast[window.weatherView].day_full.toUpperCase() : I18n.t("calendar.loading")
-                            font.weight: Font.Bold
+                            font.family: ThemeBackend.fontFamily
+                            font.weight: Font.Black
                             font.pixelSize: window.s(15)
                             fontSizeMode: Text.Fit
                             minimumPixelSize: window.s(8)
-                            color: "#ffff55"
+                            color: window.text
                         }
 
-                        McButton {
+                        IconButton {
                             Layout.preferredWidth: window.s(28)
                             Layout.preferredHeight: window.s(28)
-                            bevel: Math.max(1, Math.round(window.s(2)))
-                            fontSize: window.s(14)
-                            label: I18n.rtl ? "<" : ">"
+                            size: window.s(28)
+                            cornerRadius: window.s(8)
+                            buttonIcon: I18n.rtl ? "" : ""
+                            iconFontSize: window.s(12)
+                            accentColor: window.surface0
+                            textColor: isHoveredOrHighlighted ? window.textAccent : window.overlay1
                             onClicked: window.setWeatherView(window.targetWeatherView + 1)
                         }
                     }
@@ -929,35 +975,45 @@ Item {
                         Layout.alignment: Qt.AlignRight
                         spacing: 0
 
-                        McText {
+                        Text {
                             Layout.alignment: Qt.AlignRight
                             text: (window.weatherData && window.weatherData.offline ? "--" : window.displayedTemp.toFixed(1)) + (Weather.unitSym || "°")
-                            font.weight: Font.Bold
-                            font.pixelSize: window.s(60)
-                            color: window.weatherData && !window.weatherData.offline ? window.tempColor(window.displayedTemp) : "#ffffff"
+                            font.family: ThemeBackend.fontFamily
+                            font.weight: Font.Black
+                            font.pixelSize: window.s(68)
+                            color: window.tempGlowColor
+                            style: Text.Outline
+                            styleColor: window.isTempAnimating ? Qt.alpha(window.tempGlowColor, 0.5) : Qt.alpha(window.crust, 0.4)
+
+                            Behavior on color { ColorAnimation { duration: 300 } }
+                            Behavior on styleColor { ColorAnimation { duration: 300 } }
                         }
 
-                        McText {
+                        Text {
                             Layout.alignment: Qt.AlignRight
                             Layout.maximumWidth: window.s(320)
-                            Layout.topMargin: window.s(10)
                             horizontalAlignment: Text.AlignRight
                             text: (typeof Location !== "undefined" && Location.city && Location.city !== "") ? Location.city : (window.weatherData && window.weatherData.city ? window.weatherData.city : "")
-                            font.pixelSize: window.s(13)
-                            color: "#e0e0e0"
+                            font.family: ThemeBackend.fontFamily
+                            font.weight: Font.Bold
+                            font.pixelSize: window.s(14)
+                            color: window.text
                             elide: Text.ElideRight
                             visible: text !== ""
                         }
 
-                        McText {
+                        Text {
                             Layout.alignment: Qt.AlignRight
                             Layout.maximumWidth: window.s(320)
                             Layout.topMargin: window.s(4)
                             horizontalAlignment: Text.AlignRight
                             text: window.weatherData && window.weatherData.forecast[window.weatherView] ? window.weatherData.forecast[window.weatherView].desc : ""
-                            font.pixelSize: window.s(12)
+                            font.family: ThemeBackend.fontFamily
+                            font.weight: Font.Medium
+                            font.pixelSize: window.s(13)
                             wrapMode: Text.WordWrap
-                            color: "#9a9a9a"
+                            color: window.textAccent
+                            Behavior on color { ColorAnimation { duration: 1000 } }
 
                             opacity: window.weatherContentOpacity
                             Behavior on opacity { NumberAnimation { duration: 200 } }
@@ -976,56 +1032,28 @@ Item {
                         Repeater {
                             model: 4
 
-                            Item {
+                            ClickButton {
                                 Layout.preferredWidth: window.s(118)
                                 Layout.preferredHeight: window.s(42)
+                                cornerRadius: window.s(9)
+                                horizontalPadding: window.s(8)
 
                                 property var forecast: window.weatherData && window.weatherData.forecast[window.targetWeatherView] ? window.weatherData.forecast[window.targetWeatherView] : null
 
-                                property string buttonIcon: index === 0 ? "" : index === 1 ? "" : index === 2 ? "" : ""
-                                property string buttonText: window.weatherData && window.weatherData.offline ? "--" : forecast ? (
+                                buttonIcon: index === 0 ? "" : index === 1 ? "" : index === 2 ? "" : ""
+                                buttonText: window.weatherData && window.weatherData.offline ? "--" : forecast ? (
                                     index === 0 ? forecast.wind + (Weather.unit === "imperial" ? "mph" : "m/s") :
                                     index === 1 ? forecast.humidity + "%" :
                                     index === 2 ? forecast.pop + "%" :
                                     forecast.feels_like + "°"
                                 ) : ""
-                                property string subText: index === 0 ? I18n.t("calendar.weather.wind") : index === 1 ? I18n.t("calendar.weather.humid") : index === 2 ? I18n.t("calendar.weather.rain") : I18n.t("calendar.weather.feels")
+                                subText: index === 0 ? I18n.t("calendar.weather.wind") : index === 1 ? I18n.t("calendar.weather.humid") : index === 2 ? I18n.t("calendar.weather.rain") : I18n.t("calendar.weather.feels")
 
-                                McPanel {
-                                    anchors.fill: parent
-                                    bevel: Math.max(1, Math.round(window.s(2)))
-                                    fill: statMa.containsMouse ? "#4a4a4a" : "#363636"
-                                    light: "#6a6a6a"
-                                    dark: "#141414"
-                                }
-                                MouseArea { id: statMa; anchors.fill: parent; hoverEnabled: true }
+                                iconFontSize: window.s(14)
+                                textFontSize: window.s(11.5)
 
-                                Row {
-                                    anchors.centerIn: parent
-                                    spacing: window.s(8)
-
-                                    Text {
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        text: parent.parent.buttonIcon
-                                        font.family: ThemeBackend.iconFont
-                                        font.pixelSize: window.s(14)
-                                        color: index === 0 ? "#55ffff" : index === 1 ? "#6f8fff" : index === 2 ? "#55aaff"
-                                            : (parent.parent.forecast ? window.tempColor(parent.parent.forecast.feels_like) : "#ffffff")
-                                    }
-                                    Column {
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        McText {
-                                            text: parent.parent.parent.buttonText
-                                            font.pixelSize: window.s(11)
-                                            color: "#ffffff"
-                                        }
-                                        McText {
-                                            text: parent.parent.parent.subText
-                                            font.pixelSize: window.s(8.5)
-                                            color: "#8a8a8a"
-                                        }
-                                    }
-                                }
+                                accentColor: window.surface0
+                                textColor: isHoveredOrHighlighted ? window.textAccent : window.overlay0
                             }
                         }
                     }

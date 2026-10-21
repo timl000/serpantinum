@@ -599,7 +599,14 @@
         "select_dir": "Select directory...",
         "select_wallpaper": "Select wallpaper",
         "no_wallpaper_selected": "No wallpaper selected",
-        "select": "Wallpaper"
+        "select": "Wallpaper",
+        "select_button": "Select wallpaper"
+      },
+      "ui_style": {
+        "title": "Interface style",
+        "desc": "Look of the bar, popups, lock screen and launcher",
+        "default": "Default",
+        "minecraft": "Minecraft"
       }
     },
     "file_picker": {

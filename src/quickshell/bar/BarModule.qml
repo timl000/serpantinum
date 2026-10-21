@@ -66,15 +66,15 @@ Rectangle {
     readonly property real targetHeight: height
     y: barWindow ? barWindow.baseOffsetY + (barWindow.barHeight - height) / 2 : 0
 
-    radius: 0
+    radius: ThemeBackend.borderRadius
     border.width: 0
     readonly property color capsuleColor: isGrouped ? "transparent" : (isSolid ? (distinctPills ? Qt.alpha(Qt.darker(ThemeBackend.surface0, 1.15), root.barOpacity) : "transparent") : Qt.alpha(ThemeBackend.base, root.barOpacity))
-    color: "transparent"
+    color: UiStyle.minecraft ? "transparent" : capsuleColor
     clip: true
 
     McPanel {
         anchors.fill: parent
-        visible: root.capsuleColor.a > 0
+        visible: UiStyle.minecraft && root.capsuleColor.a > 0
         opacity: root.barOpacity
         bevel: 2
         fill: "#1d1d1d"

@@ -453,7 +453,7 @@ Item {
                 spacing: rootObj.s(4)
 
                 IconButton {
-                    mcStyle: true
+                    mcStyle: UiStyle.minecraft
                     Layout.preferredWidth: rootObj.s(32)
                     Layout.preferredHeight: rootObj.s(32)
                     size: rootObj.s(32)
@@ -471,7 +471,7 @@ Item {
                     Layout.preferredHeight: rootObj.s(32)
 
                     IconButton {
-                        mcStyle: true
+                        mcStyle: UiStyle.minecraft
                         anchors.fill: parent
                         size: rootObj.s(32)
                         cornerRadius: ThemeBackend.borderRadius
@@ -497,7 +497,7 @@ Item {
                     }
 
                     IconButton {
-                        mcStyle: true
+                        mcStyle: UiStyle.minecraft
                         anchors.fill: parent
                         size: rootObj.s(32)
                         cornerRadius: ThemeBackend.borderRadius
@@ -514,7 +514,7 @@ Item {
                 }
 
                 IconButton {
-                    mcStyle: true
+                    mcStyle: UiStyle.minecraft
                     Layout.preferredWidth: rootObj.s(32)
                     Layout.preferredHeight: rootObj.s(32)
                     size: rootObj.s(32)
@@ -571,7 +571,7 @@ Item {
                 spacing: rootObj.s(4)
 
                 IconButton {
-                    mcStyle: true
+                    mcStyle: UiStyle.minecraft
                     Layout.preferredWidth: rootObj.s(32)
                     Layout.preferredHeight: rootObj.s(32)
                     size: rootObj.s(32)
@@ -627,7 +627,7 @@ Item {
                             spacing: rootObj.s(10)
 
                             IconButton {
-                                mcStyle: true
+                                mcStyle: UiStyle.minecraft
                                 enabled: false
                                 size: rootObj.s(36)
                                 Layout.preferredWidth: rootObj.s(36)
@@ -711,7 +711,7 @@ Item {
                             spacing: rootObj.s(12)
 
                             IconButton {
-                                mcStyle: true
+                                mcStyle: UiStyle.minecraft
                                 enabled: false
                                 size: rootObj.s(36)
                                 Layout.preferredWidth: rootObj.s(36)
@@ -874,7 +874,7 @@ Item {
                                 spacing: rootObj.s(6)
 
                                 IconButton {
-                                    mcStyle: true
+                                    mcStyle: UiStyle.minecraft
                                     enabled: false
                                     size: rootObj.s(20)
                                     Layout.preferredWidth: rootObj.s(20)
@@ -1074,7 +1074,7 @@ Item {
                                         }
 
                                         ClickButton {
-                                            mcStyle: true
+                                            mcStyle: UiStyle.minecraft
                                             enabled: false
                                             Layout.alignment: Qt.AlignVCenter
                                             Layout.preferredHeight: rootObj.s(25)
@@ -1114,7 +1114,7 @@ Item {
                                 spacing: rootObj.s(6)
 
                                 IconButton {
-                                    mcStyle: true
+                                    mcStyle: UiStyle.minecraft
                                     enabled: false
                                     size: rootObj.s(22)
                                     Layout.preferredWidth: rootObj.s(22)
@@ -1325,7 +1325,7 @@ Item {
                                     spacing: rootObj.s(8)
 
                                     IconButton {
-                                        mcStyle: true
+                                        mcStyle: UiStyle.minecraft
                                         enabled: false
                                         size: rootObj.s(32)
                                         Layout.preferredWidth: rootObj.s(32)
@@ -1370,7 +1370,7 @@ Item {
                                     spacing: rootObj.s(8)
 
                                     IconButton {
-                                        mcStyle: true
+                                        mcStyle: UiStyle.minecraft
                                         enabled: false
                                         size: rootObj.s(32)
                                         Layout.preferredWidth: rootObj.s(32)
@@ -1538,7 +1538,7 @@ Item {
                                         }
 
                                         ClickButton {
-                                            mcStyle: true
+                                            mcStyle: UiStyle.minecraft
                                             enabled: false
                                             Layout.alignment: Qt.AlignVCenter
                                             Layout.preferredHeight: rootObj.s(25)

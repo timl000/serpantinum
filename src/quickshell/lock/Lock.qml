@@ -2368,6 +2368,7 @@ Scope {
                     // Minecraft look on top of the stock lock UI (logic stays above).
                     McLock {
                         id: mcLock
+                        visible: UiStyle.minecraft
                         anchors.fill: parent
                         z: 1000
                         opacity: screenRoot.mainOpacity

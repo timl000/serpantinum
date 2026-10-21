@@ -600,7 +600,14 @@
         "select_dir": "Обрати теку...",
         "select_wallpaper": "Обрати шпалери",
         "no_wallpaper_selected": "Шпалери не обрано",
-        "select": "Шпалери"
+        "select": "Шпалери",
+        "select_button": "Вибрати шпалери"
+      },
+      "ui_style": {
+        "title": "Стиль інтерфейсу",
+        "desc": "Зовнішній вигляд бару, попапів, блокування і меню запуску",
+        "default": "Звичайний",
+        "minecraft": "Minecraft"
       }
     },
     "file_picker": {

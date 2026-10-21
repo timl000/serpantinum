@@ -386,7 +386,7 @@ Item {
                 bottomSpacing: 0
 
                 ClickButton {
-                    mcStyle: true
+                    mcStyle: UiStyle.minecraft
                     implicitHeight: rootObj.s(32)
                     horizontalPadding: rootObj.s(12)
                     buttonText: notificationsTabRoot.selectorOpen ? I18n.t("guide.notifications.position.close_selector", "Close the selector") : I18n.t("guide.notifications.position.select_on_screen", "Select on screen...")
@@ -520,7 +520,7 @@ Item {
                                     spacing: rootObj.s(6)
 
                                     ClickButton {
-                                        mcStyle: true
+                                        mcStyle: UiStyle.minecraft
                                         enabled: false
                                         Layout.preferredWidth: rootObj.s(140)
                                         implicitHeight: rootObj.s(26)
@@ -533,7 +533,7 @@ Item {
                                     }
 
                                     IconButton {
-                                        mcStyle: true
+                                        mcStyle: UiStyle.minecraft
                                         size: rootObj.s(26)
                                         cornerRadius: rootObj.s(6)
                                         buttonIcon: "󰕰"
@@ -546,7 +546,7 @@ Item {
                                     }
 
                                     IconButton {
-                                        mcStyle: true
+                                        mcStyle: UiStyle.minecraft
                                         size: rootObj.s(26)
                                         cornerRadius: rootObj.s(6)
                                         buttonIcon: "󰑐"
@@ -768,7 +768,7 @@ Item {
                 description: I18n.t("guide.notifications.sound_file.desc")
 
                 IconButton {
-                    mcStyle: true
+                    mcStyle: UiStyle.minecraft
                     Layout.preferredWidth: rootObj.s(32)
                     Layout.preferredHeight: rootObj.s(32)
                     Layout.alignment: Qt.AlignVCenter
@@ -786,7 +786,7 @@ Item {
                 }
 
                 IconButton {
-                    mcStyle: true
+                    mcStyle: UiStyle.minecraft
                     Layout.preferredWidth: rootObj.s(32)
                     Layout.preferredHeight: rootObj.s(32)
                     Layout.alignment: Qt.AlignVCenter
@@ -844,7 +844,7 @@ Item {
                 Item { Layout.fillWidth: true }
 
                 ClickButton {
-                    mcStyle: true
+                    mcStyle: UiStyle.minecraft
                     Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                     implicitHeight: rootObj.s(36)
                     horizontalPadding: rootObj.s(16)

@@ -8,7 +8,6 @@ import Quickshell.Io
 import Quickshell.Services.Pipewire
 import "../"
 import "../reusables"
-import "../mc"
 
 Item {
     id: window
@@ -83,6 +82,15 @@ Item {
     }
 
     property string activeTab: "outputs"
+    onActiveTabChanged: {
+        let newIndex = (activeTab === "outputs") ? 0 : ((activeTab === "inputs") ? 1 : 2);
+        if (tabSwitch.currentIndex !== newIndex) {
+            tabSwitch.currentIndex = newIndex;
+            if (typeof Sounds !== "undefined") {
+                Sounds.playSfx(tabSwitch.switchSound);
+            }
+        }
+    }
 
     readonly property color tabColor: {
         if (activeTab === "outputs") return ThemeBackend.blue;
@@ -180,25 +188,17 @@ Item {
 
         Rectangle {
             anchors.fill: parent
-            radius: 0
-            color: "#151515"
-            border.width: 0
+            radius: ThemeBackend.borderRadius
+            color: ThemeBackend.base
+            border.color: ThemeBackend.surface0
+            border.width: 1
             clip: true
-
-            McPanel {
-                anchors.fill: parent
-                bevel: Math.max(2, Math.round(Scaler.s(3)))
-                fill: "#151515"
-                light: "#3a3a3a"
-                dark: "#070707"
-            }
 
             Rectangle {
                 width: parent.width * 0.8; height: width; radius: width / 2
                 x: (parent.width / 2 - width / 2) + Math.cos(window.globalOrbitAngle * 2) * window.s(120)
                 y: (parent.height / 2 - height / 2) + Math.sin(window.globalOrbitAngle * 2) * window.s(80)
                 opacity: 0.06
-                visible: false
                 color: window.tabColor
                 Behavior on color { ColorAnimation { duration: 800 } }
             }
@@ -207,7 +207,6 @@ Item {
                 x: (parent.width / 2 - width / 2) + Math.sin(window.globalOrbitAngle * 1.5) * window.s(-120)
                 y: (parent.height / 2 - height / 2) + Math.cos(window.globalOrbitAngle * 1.5) * window.s(-80)
                 opacity: 0.04
-                visible: false
                 color: Qt.lighter(window.tabColor, 1.3)
                 Behavior on color { ColorAnimation { duration: 800 } }
             }
@@ -239,7 +238,7 @@ Item {
 
                             property real pulseOp: 0.0
                             property real pulseSc: 1.0
-                            opacity: 0.0
+                            opacity: window.activeMute ? 0.0 : pulseOp
                             scale: pulseSc
 
                             Timer {
@@ -260,7 +259,7 @@ Item {
                             height: width
                             radius: ThemeBackend.borderRadius
                             color: window.activeMute ? ThemeBackend.red : window.tabColor
-                            opacity: 0.0
+                            opacity: window.activeMute ? 0.15 : 0.06
                             z: -1
                             Behavior on color { ColorAnimation { duration: 300 } }
 
@@ -285,9 +284,9 @@ Item {
                         Rectangle {
                             id: centralCore
                             anchors.fill: parent
-                            radius: 0
-                            color: "#101010"
-                            border.color: "#000000"
+                            radius: ThemeBackend.borderRadius
+                            color: ThemeBackend.base
+                            border.color: window.activeMute ? ThemeBackend.red : Qt.lighter(window.tabColor, 1.1)
                             border.width: 2
                             clip: true
                             Behavior on border.color { ColorAnimation { duration: 300 } }
@@ -313,8 +312,8 @@ Item {
                                 waveAmp: fillLevel < 0.99 ? (window.s(6) * Math.sin(fillLevel * Math.PI)) : 0
                                 phase: wavePhase
                                 vertical: 1.0
-                                color1: window.activeMute ? "#e05050" : "#9cf060"
-                                color2: window.activeMute ? "#a02020" : "#4fae2f"
+                                color1: window.activeMute ? Qt.lighter(ThemeBackend.red, 1.15) : Qt.lighter(window.tabColor, 1.15)
+                                color2: window.activeMute ? ThemeBackend.red : window.tabColor
                                 visible: window.activeVol > 0
                             }
 
@@ -329,9 +328,7 @@ Item {
                                 font.family: ThemeBackend.fontFamily
                                 font.weight: Font.Black
                                 font.pixelSize: window.s(26)
-                                color: window.activeMute ? "#ff5555" : "#ffffff"
-                                style: Text.Raised
-                                styleColor: "#3f3f3f"
+                                color: window.activeMute ? ThemeBackend.red : ThemeBackend.text
                                 text: window.activeMute ? I18n.t("volumepopup.mute") : window.activeVol + "%"
                                 Behavior on color { ColorAnimation { duration: 200 } }
                             }
@@ -363,21 +360,9 @@ Item {
                                     font.family: ThemeBackend.fontFamily
                                     font.weight: Font.Black
                                     font.pixelSize: window.s(26)
-                                    color: "#ffffff"
-                                    style: Text.Raised
-                                    styleColor: "#1f4f10"
+                                    color: ThemeBackend.crust
                                     text: window.activeMute ? I18n.t("volumepopup.mute") : window.activeVol + "%"
                                 }
-                            }
-
-                            // Slot bevel: dark top/left, light bottom/right.
-                            Item {
-                                anchors.fill: parent
-                                readonly property int b: Math.max(2, Math.round(window.s(3)))
-                                Rectangle { x: 0; y: 0; width: parent.width; height: parent.b; color: Qt.rgba(0, 0, 0, 0.5) }
-                                Rectangle { x: 0; y: 0; width: parent.b; height: parent.height; color: Qt.rgba(0, 0, 0, 0.5) }
-                                Rectangle { x: 0; y: parent.height - parent.b; width: parent.width; height: parent.b; color: Qt.rgba(1, 1, 1, 0.22) }
-                                Rectangle { x: parent.width - parent.b; y: 0; width: parent.b; height: parent.height; color: Qt.rgba(1, 1, 1, 0.22) }
                             }
 
                             MouseArea {
@@ -429,7 +414,6 @@ Item {
                             spacing: window.s(10)
 
                             IconButton {
-                                mcStyle: true
                                 Layout.alignment: Qt.AlignVCenter
                                 size: window.s(26)
                                 cornerRadius: window.s(8)
@@ -447,8 +431,6 @@ Item {
                                 from: 0.0
                                 to: 100.0
                                 value: window.activeVol
-                                mcStyle: true
-                                mcFillColor: window.activeMute ? "#5a5a5a" : "#7fe03f"
                                 backgroundColor: ThemeBackend.surface1
                                 accentColor: window.activeMute ? ThemeBackend.surface2 : window.tabColor
                                 gradColor1: window.activeMute ? ThemeBackend.surface2 : window.tabColor
@@ -481,30 +463,25 @@ Item {
                     }
                 }
 
-                RowLayout {
+                Switch {
                     id: tabSwitch
                     Layout.fillWidth: true
-                    Layout.preferredHeight: window.s(34)
-                    spacing: window.s(6)
+                    Layout.preferredHeight: window.s(38)
+                    options: [I18n.t("volumepopup.tabs.outputs"), I18n.t("volumepopup.tabs.inputs"), I18n.t("volumepopup.tabs.streams")]
+                    currentIndex: 0
+                    cornerRadius: ThemeBackend.borderRadius
+                    baseColor: ThemeBackend.surface0
+                    accentColor: window.tabColor
+                    textColor: ThemeBackend.subtext0
+                    activeTextColor: ThemeBackend.crust
+                    fontPixelSize: window.s(12)
                     opacity: introHeader
                     transform: Translate { y: window.s(15) * (1.0 - introHeader) }
 
-                    Repeater {
-                        model: [
-                            { tab: "outputs", label: I18n.t("volumepopup.tabs.outputs") },
-                            { tab: "inputs", label: I18n.t("volumepopup.tabs.inputs") },
-                            { tab: "apps", label: I18n.t("volumepopup.tabs.streams") }
-                        ]
-                        McButton {
-                            Layout.fillWidth: true
-                            Layout.preferredWidth: 1
-                            Layout.preferredHeight: window.s(34)
-                            bevel: 2
-                            label: modelData.label
-                            fontSize: window.s(12)
-                            selected: window.activeTab === modelData.tab
-                            onClicked: window.activeTab = modelData.tab
-                        }
+                    onValueChanged: function(index, value) {
+                        if (index === 0) window.activeTab = "outputs";
+                        else if (index === 1) window.activeTab = "inputs";
+                        else window.activeTab = "apps";
                     }
                 }
 
@@ -590,22 +567,11 @@ Item {
 
                             property bool isHovered: cardMa.containsMouse && !isActiveNode
 
-                            color: "transparent"
-                            border.width: 0
-
-                            McPanel {
-                                anchors.fill: parent
-                                fill: delegateRoot.isActiveNode ? "#2f7f2f" : (delegateRoot.isHovered ? "#4a4a4a" : "#333333")
-                                light: delegateRoot.isActiveNode ? "#5fbf4f" : "#5e5e5e"
-                                dark: delegateRoot.isActiveNode ? "#174f17" : "#151515"
-                            }
-                            Rectangle {
-                                anchors.fill: parent
-                                visible: delegateRoot.isHovered
-                                color: "transparent"
-                                border.width: 2
-                                border.color: "#ffffff"
-                            }
+                            color: isActiveNode ? window.tabColor : (isHovered ? ThemeBackend.surface1 : ThemeBackend.surface0)
+                            border.color: isActiveNode ? window.tabColor : ThemeBackend.surface1
+                            border.width: isActiveNode ? 2 : 1
+                            Behavior on border.color { ColorAnimation { duration: 300 } }
+                            Behavior on color { ColorAnimation { duration: 300 } }
 
                             MouseArea {
                                 id: cardMa
@@ -634,7 +600,8 @@ Item {
 
                                     Text {
                                         font.family: "Iosevka Nerd Font"; font.pixelSize: window.s(18)
-                                        color: "#ffffff"
+                                        color: isActiveNode ? ThemeBackend.crust : ThemeBackend.text
+                                        Behavior on color { ColorAnimation { duration: 200 } }
                                         text: {
                                             if (window.activeTab === "inputs") return "󰍬";
                                             if (window.activeTab === "apps") return "󰎆";
@@ -649,15 +616,13 @@ Item {
                                         Text {
                                             Layout.fillWidth: true; elide: Text.ElideRight
                                             font.family: ThemeBackend.fontFamily; font.weight: Font.Bold; font.pixelSize: window.s(13)
-                                            color: "#ffffff"
-                                            style: Text.Raised
-                                            styleColor: "#3f3f3f"
+                                            color: isActiveNode ? ThemeBackend.crust : ThemeBackend.text
                                             text: delegateRoot.nodeDesc
                                         }
                                         Text {
                                             Layout.fillWidth: true; elide: Text.ElideRight
                                             font.family: ThemeBackend.fontFamily; font.pixelSize: window.s(10.5)
-                                            color: isActiveNode ? "#c8f0c0" : "#a0a0a0"
+                                            color: isActiveNode ? Qt.darker(ThemeBackend.crust, 1.5) : ThemeBackend.subtext0
                                             text: isActiveNode ? I18n.t("volumepopup.active_default") : delegateRoot.nodeNameStr
                                         }
                                     }
@@ -672,7 +637,6 @@ Item {
                                     Behavior on opacity { NumberAnimation { duration: 200 } }
 
                                     IconButton {
-                                        mcStyle: true
                                         Layout.alignment: Qt.AlignVCenter
                                         size: window.s(24)
                                         cornerRadius: window.s(8)
@@ -690,8 +654,6 @@ Item {
                                         from: 0.0
                                         to: 100.0
                                         value: delegateRoot.nodeVol
-                                        mcStyle: true
-                                        mcFillColor: delegateRoot.nodeMute ? "#5a5a5a" : "#7fe03f"
                                         backgroundColor: ThemeBackend.surface1
                                         accentColor: delegateRoot.nodeMute ? ThemeBackend.surface2 : window.tabColor
                                         gradColor1: delegateRoot.nodeMute ? ThemeBackend.surface2 : window.tabColor
@@ -725,52 +687,6 @@ Item {
                         }
                     }
                 }
-            }
-        }
-    }
-
-    Item {
-        id: mcFloor
-        x: Scaler.s(24)
-        width: parent.width - Scaler.s(48)
-        y: parent.height - Scaler.s(26)
-        height: 1
-    }
-
-    // Steve drops onto a slime block and keeps bouncing to the volume level.
-    SteveVisitor {
-        id: volSteve
-        anchors.fill: parent
-        z: 100
-        active: window.visible
-        style: "slime"
-        target: mcFloor
-        homeFrac: 0.9
-        bounceLevel: window.activeMute ? 0 : Math.min(1, window.activeVol / 100)
-        sleeping: window.activeMute
-        px: Math.max(3, Math.round(Scaler.s(3)))
-        phrases: ["Музичка!", "Ще гучніше!", "Бум-бум-бум", "Обожнюю цей трек", "Слайм пружинить!", "Ой!", "Гей!"]
-        onArrivedSignal: say(window.activeMute ? "Тихо тут..." : "Музичка!")
-
-        // React to volume changes once the slider settles.
-        Timer {
-            id: volReact
-            interval: 350
-            onTriggered: {
-                if (!volSteve.arrived || window.activeMute) return;
-                let v = window.activeVol;
-                if (v >= 95) volSteve.say("ГУЧНО!!");
-                else if (v <= 5) volSteve.say("тссс...");
-                else volSteve.say(v + "%", 1000);
-                volSteve.hop();
-            }
-        }
-        Connections {
-            target: window
-            function onActiveVolChanged() { volReact.restart(); }
-            function onActiveMuteChanged() {
-                if (!volSteve.arrived) return;
-                volSteve.say(window.activeMute ? "Добраніч..." : "Я прокинувся!");
             }
         }
     }

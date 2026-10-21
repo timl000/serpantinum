@@ -835,7 +835,7 @@ Item {
                         spacing: rootObj.s(12)
 
                         IconButton {
-                            mcStyle: true
+                            mcStyle: UiStyle.minecraft
                             enabled: false
                             size: rootObj.s(32)
                             Layout.preferredWidth: rootObj.s(32)
@@ -872,7 +872,7 @@ Item {
                         }
 
                         IconButton {
-                            mcStyle: true
+                            mcStyle: UiStyle.minecraft
                             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                             size: rootObj.s(32)
                             Layout.preferredWidth: rootObj.s(32)

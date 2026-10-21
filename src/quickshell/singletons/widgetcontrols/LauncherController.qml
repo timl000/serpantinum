@@ -11,7 +11,7 @@ Item {
     // Minecraft inventory launcher instead of the stock one (launcher/McInventory.qml).
     property bool minecraft: false
     // Small dark rofi-like launcher (launcher/MiniLauncher.qml).
-    property bool minimal: true
+    readonly property bool minimal: UiStyle.minecraft
     property var screen: null
 
     function getFocusedScreen() {

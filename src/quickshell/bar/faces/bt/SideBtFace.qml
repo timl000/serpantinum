@@ -242,7 +242,7 @@ Item {
             visible: root.showName
             anchors.horizontalCenter: parent.horizontalCenter
             text: root.btDevice.length > 6 ? (root.btDevice.substring(0, 5) + "…") : root.btDevice
-            font.family: "Monocraft"
+            font.family: ThemeBackend.fontFamily
             font.pixelSize: s(root.isCompact ? 9 : 10)
             font.bold: true
             color: sideTextMouseArea.containsMouse ? Qt.lighter(ThemeBackend.text, 1.15) : ThemeBackend.text
@@ -251,7 +251,7 @@ Item {
     }
 
     ClickButton {
-        mcStyle: true
+        mcStyle: UiStyle.minecraft
         id: btBtn
         visible: root.btStyle !== "text"
         anchors.centerIn: parent

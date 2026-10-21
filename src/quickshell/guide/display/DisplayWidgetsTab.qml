@@ -766,7 +766,7 @@ Item {
                             }
 
                             IconButton {
-                                mcStyle: true
+                                mcStyle: UiStyle.minecraft
                                 size: rootObj.s(32)
                                 Layout.preferredWidth: rootObj.s(32)
                                 Layout.preferredHeight: rootObj.s(32)
@@ -782,7 +782,7 @@ Item {
                             }
 
                             ClickButton {
-                                mcStyle: true
+                                mcStyle: UiStyle.minecraft
                                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                                 maxWidth: rootObj.s(200)
                                 implicitHeight: rootObj.s(32)
@@ -802,7 +802,7 @@ Item {
                             }
 
                             ClickButton {
-                                mcStyle: true
+                                mcStyle: UiStyle.minecraft
                                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                                 maxWidth: rootObj.s(140)
                                 implicitHeight: rootObj.s(32)
@@ -1184,7 +1184,7 @@ Item {
                                         spacing: rootObj.s(8)
 
                                         IconButton {
-                                            mcStyle: true
+                                            mcStyle: UiStyle.minecraft
                                             size: rootObj.s(32)
                                             iconOffsetX: (widgetItemCard.typeInfo && widgetItemCard.typeInfo.iconOffsetX !== undefined) ? rootObj.s(widgetItemCard.typeInfo.iconOffsetX) : 0
                                             cornerRadius: ThemeBackend.borderRadius

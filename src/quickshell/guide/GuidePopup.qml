@@ -1048,11 +1048,12 @@ Item {
 
         Rectangle {
             anchors.fill: parent
-            radius: 0
-            color: "#151515"
+            radius: UiStyle.minecraft ? 0 : ThemeBackend.clampedBorderRadius
+            color: UiStyle.minecraft ? "#151515" : ThemeBackend.base
 
             McPanel {
                 anchors.fill: parent
+                visible: UiStyle.minecraft
                 bevel: Math.max(2, Math.round(Scaler.s(3)))
                 fill: "#151515"
                 light: "#3a3a3a"
@@ -1088,7 +1089,8 @@ Item {
     SteveVisitor {
         anchors.fill: parent
         z: 100
-        active: root.visible
+        visible: UiStyle.minecraft
+        active: root.visible && UiStyle.minecraft
         style: "nether"
         target: sidebar.activeHighlightItem
         px: Math.max(3, Math.round(Scaler.s(3)))

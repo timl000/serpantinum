@@ -318,6 +318,24 @@ PanelWindow {
 
     property var widgetCache: ({})
     property var componentCache: ({})
+    property var styleRebuild: ({})
+
+    // On a style change, drop the cached popups that have a per-style twin (unless one is
+    // open right now; it is rebuilt the next time it opens).
+    Connections {
+        target: UiStyle
+        function onStyleChanged() {
+            for (let name in masterWindow.componentCache) {
+                let t = masterWindow.getLayout(name);
+                if (!t || !UiStyle.hasVariant(t.comp)) continue;
+                let item = masterWindow.widgetCache[name];
+                if (item && item.visible) { masterWindow.styleRebuild[name] = true; continue; }
+                if (item) item.destroy();
+                delete masterWindow.widgetCache[name];
+                delete masterWindow.componentCache[name];
+            }
+        }
+    }
 
     function widgetNameForItem(item) {
         for (let name in widgetCache) {
@@ -327,12 +345,20 @@ PanelWindow {
     }
 
     function ensureWidgetItem(name, t) {
+        if (styleRebuild[name] && widgetCache[name] && !widgetCache[name].visible) {
+            widgetCache[name].destroy();
+            delete widgetCache[name];
+            delete componentCache[name];
+            delete styleRebuild[name];
+        }
         let cached = widgetCache[name];
         if (cached) return cached;
 
+        // Interface style (Settings > Theme) may swap a popup for its *Mc.qml twin.
+        let compPath = UiStyle.comp(t.comp);
         let comp = componentCache[name];
         if (!comp) {
-            comp = typeof t.comp === "string" ? Qt.createComponent(t.comp) : t.comp;
+            comp = typeof compPath === "string" ? Qt.createComponent(compPath) : compPath;
             if (comp) componentCache[name] = comp;
         }
         if (!comp) return null;

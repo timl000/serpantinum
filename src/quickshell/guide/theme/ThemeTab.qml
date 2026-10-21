@@ -1144,7 +1144,7 @@ Item {
                 }
 
                 IconButton {
-                    mcStyle: true
+                    mcStyle: UiStyle.minecraft
                     id: videoIndicator
                     visible: themeTabRoot.isWallpaperVideo
                     anchors.centerIn: parent
@@ -1166,14 +1166,14 @@ Item {
                     spacing: rootObj.s(12)
 
                     ClickButton {
-                        mcStyle: true
+                        mcStyle: UiStyle.minecraft
                         id: wpSelectBtn
                         Layout.preferredHeight: rootObj.s(32)
                         cornerRadius: ThemeBackend.borderRadius
                         horizontalPadding: rootObj.s(14)
                         buttonIcon: "󰸉"
                         iconFontSize: rootObj.s(15)
-                        buttonText: "Select wallpaper"
+                        buttonText: I18n.t("guide.theme.wallpaper.select_button")
                         textFontSize: rootObj.s(11)
                         accentColor: ThemeBackend.mauve
                         textColor: ThemeBackend.base
@@ -1243,7 +1243,7 @@ Item {
                 searchKeywords: "wallpaper directory folder path pictures wallpapers"
 
                 IconButton {
-                    mcStyle: true
+                    mcStyle: UiStyle.minecraft
                     Layout.preferredWidth: rootObj.s(32)
                     Layout.preferredHeight: rootObj.s(32)
                     Layout.alignment: Qt.AlignVCenter
@@ -1298,6 +1298,36 @@ Item {
 
             SettingsRow {
                 rootObj: themeTabRoot.rootObj
+                settingId: "ui_style"
+                icon: "󰉼"
+                title: I18n.t("guide.theme.ui_style.title")
+                description: I18n.t("guide.theme.ui_style.desc")
+                searchKeywords: "style interface look skin minecraft default classic pixel"
+
+                Repeater {
+                    model: UiStyle.styles
+                    delegate: ClickButton {
+                        required property string modelData
+                        readonly property bool picked: UiStyle.style === modelData
+                        mcStyle: UiStyle.minecraft
+                        Layout.preferredHeight: rootObj.s(32)
+                        Layout.alignment: Qt.AlignVCenter
+                        horizontalPadding: rootObj.s(14)
+                        cornerRadius: ThemeBackend.borderRadius
+                        buttonIcon: modelData === "minecraft" ? "󰍳" : "󰏘"
+                        buttonText: I18n.t("guide.theme.ui_style." + modelData)
+                        iconFontSize: rootObj.s(14)
+                        textFontSize: rootObj.s(11)
+                        action_highlight: picked
+                        accentColor: picked ? ThemeBackend.mauve : ThemeBackend.surface0
+                        textColor: picked ? ThemeBackend.crust : ThemeBackend.text
+                        onClicked: UiStyle.apply(modelData)
+                    }
+                }
+            }
+
+            SettingsRow {
+                rootObj: themeTabRoot.rootObj
                 settingId: "font"
                 icon: "󰛖"
                 title: I18n.t("guide.theme.font.title")
@@ -1305,7 +1335,7 @@ Item {
                 searchKeywords: "font typeface family typography text"
 
                 IconButton {
-                    mcStyle: true
+                    mcStyle: UiStyle.minecraft
                     Layout.preferredWidth: rootObj.s(32)
                     Layout.preferredHeight: rootObj.s(32)
                     Layout.alignment: Qt.AlignVCenter
@@ -1323,7 +1353,7 @@ Item {
                 }
 
                 IconButton {
-                    mcStyle: true
+                    mcStyle: UiStyle.minecraft
                     Layout.preferredWidth: rootObj.s(32)
                     Layout.preferredHeight: rootObj.s(32)
                     Layout.alignment: Qt.AlignVCenter
@@ -1439,7 +1469,7 @@ Item {
                         color: highlightFlash > 0.001 ? Qt.rgba(ThemeBackend.mauve.r, ThemeBackend.mauve.g, ThemeBackend.mauve.b, highlightFlash * 0.18) : "transparent"
 
                         IconButton {
-                            mcStyle: true
+                            mcStyle: UiStyle.minecraft
                             Layout.alignment: Qt.AlignVCenter
                             size: rootObj.s(32)
                             Layout.preferredWidth: rootObj.s(32)
