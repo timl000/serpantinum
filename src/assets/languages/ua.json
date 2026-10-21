@@ -21,7 +21,7 @@
         "uptime": "Час роботи",
         "default_os": "Linux"
       },
-      "github_repo": "ArseniiTkachuk/Serpantinum-UA",
+      "github_repo": "ilyamiro/serpantinum",
       "update_available": "Доступне оновлення v{version}",
       "update_button": "Оновити"
     },
