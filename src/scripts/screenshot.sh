@@ -54,7 +54,20 @@ source "$SCRIPT_DIR/i18n.sh"
 qs_ensure_cache "screenshot"
 qs_ensure_cache "recording"
 
-CACHE_DIR="$QS_CACHE_RECORDING"
+# Recorder state lives in the runtime dir: a PID or PulseAudio module id
+# left over from a previous boot must never be reused.
+CACHE_DIR="$QS_RUN_RECORDING"
+
+is_recorder_pid() {
+    local pid="$1" exe
+    [[ "$pid" =~ ^[0-9]+$ ]] && kill -0 "$pid" 2>/dev/null || return 1
+    exe="$(tr '\0' '\n' < "/proc/$pid/cmdline" 2>/dev/null | head -n 1)"
+    case "${exe##*/}" in
+        gpu-screen-recorder|wf-recorder) return 0 ;;
+    esac
+    return 1
+}
+
 SAVE_DIR="${XDG_PICTURES_DIR:-$HOME/Pictures}/Screenshots"
 RECORD_DIR="${XDG_VIDEOS_DIR:-$HOME/Videos}/Recordings"
 mkdir -p "$SAVE_DIR" "$RECORD_DIR"
@@ -89,7 +102,7 @@ if [ -f "$CACHE_DIR/rec_pid" ]; then
     REC_PID=$(cat "$CACHE_DIR/rec_pid" 2>/dev/null)
     FINAL_FILE=$(cat "$CACHE_DIR/final_file" 2>/dev/null)
     
-    if [ -n "$REC_PID" ] && kill -0 "$REC_PID" 2>/dev/null; then
+    if is_recorder_pid "$REC_PID"; then
         [ -f "$CACHE_DIR/processing.lock" ] && exit 0
         touch "$CACHE_DIR/processing.lock"
         

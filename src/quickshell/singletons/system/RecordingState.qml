@@ -11,7 +11,7 @@ Singleton {
     property int recSeconds: 0
     property real recStartEpoch: 0
     readonly property string recTimeFormatted: String(Math.floor(recSeconds / 60)).padStart(2, "0") + ":" + String(recSeconds % 60).padStart(2, "0")
-    readonly property string recCacheDir: Caching.cacheDir ? Caching.getCacheDir("recording") : ""
+    readonly property string recCacheDir: Caching.runDir ? Caching.getRunDir("recording") : ""
 
     property int subscribers: 0
     readonly property bool active: subscribers > 0 && recCacheDir !== ""
@@ -51,7 +51,7 @@ Singleton {
         id: recCheckProc
         command: root.recCacheDir ? [
             "bash", "-c",
-            "d='" + root.recCacheDir + "'; if [ -f \"$d/rec_pid\" ] && [ -f \"$d/rec_start_epoch\" ]; then p=$(cat \"$d/rec_pid\" 2>/dev/null); if [ -n \"$p\" ] && kill -0 \"$p\" 2>/dev/null; then cat \"$d/rec_start_epoch\" 2>/dev/null; else echo 'NONE'; fi; else echo 'NONE'; fi"
+            "d='" + root.recCacheDir + "'; if [ -f \"$d/rec_pid\" ] && [ -f \"$d/rec_start_epoch\" ]; then p=$(cat \"$d/rec_pid\" 2>/dev/null); exe=$(tr '\\0' '\\n' < \"/proc/$p/cmdline\" 2>/dev/null | head -n 1); case \"${exe##*/}\" in gpu-screen-recorder|wf-recorder) ok=1 ;; *) ok=0 ;; esac; if [ -n \"$p\" ] && [ \"$ok\" = 1 ] && kill -0 \"$p\" 2>/dev/null; then cat \"$d/rec_start_epoch\" 2>/dev/null; else echo 'NONE'; fi; else echo 'NONE'; fi"
         ] : []
         stdout: StdioCollector {
             id: recCheckOut
